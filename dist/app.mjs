@@ -42,15 +42,3 @@ $('invite').addEventListener('click',()=>$('help-dialog').showModal());$('help-c
 $('rest').addEventListener('click',()=>$('rest-dialog').showModal());for(const id of ['resume','rest-close'])$(id).addEventListener('click',()=>$('rest-dialog').close());
 $('next').addEventListener('click',()=>{$('win-dialog').close();start((state.level+1)%levels.length);});$('again').addEventListener('click',()=>{$('win-dialog').close();start(state.level);});$('finish').addEventListener('click',()=>{$('win-dialog').close();$('rest-dialog').showModal();});
 start(0);
-const context=document.modelContext;
-if(context?.registerTool){
- const lifecycle=new AbortController();
- const snapshot=()=>({level:state.level+1,pieces:state.pieces.map(p=>({id:p.id,type:names[p.type],at:p.at,goal:p.goal,legal:legalMoves(state,p.id)})),stars:levels[state.level].stars.filter(s=>!state.collected.includes(s.at)),won:state.won});
- const tools=[
-  {name:'read_chess_adventure',description:'Read the current island, piece positions, remaining stars and legal moves.',inputSchema:{type:'object',properties:{},additionalProperties:false},annotations:{readOnlyHint:true,untrustedContentHint:false},execute:()=>snapshot()},
-  {name:'start_chess_island',description:'Start or restart island 1, 2 or 3. This clears the current island progress.',inputSchema:{type:'object',properties:{island:{type:'integer',minimum:1,maximum:3}},required:['island'],additionalProperties:false},annotations:{readOnlyHint:false,untrustedContentHint:false},execute:input=>{if(!Number.isInteger(input?.island)||input.island<1||input.island>3)throw Error('Invalid island');document.querySelectorAll('dialog[open]').forEach(d=>d.close());start(input.island-1);return snapshot();}},
-  {name:'move_chess_piece',description:'Move a current piece to a legal square on the island, collecting a matching star if present.',inputSchema:{type:'object',properties:{piece:{type:'string',enum:['r','b','n']},to:{type:'string',pattern:'^[a-h][1-8]$'}},required:['piece','to'],additionalProperties:false},annotations:{readOnlyHint:false,untrustedContentHint:false},execute:input=>{if(!input||!['r','b','n'].includes(input.piece)||!(/^[a-h][1-8]$/).test(input.to)||!play(input.piece,input.to))throw Error('Illegal move');return snapshot();}},
- ];
- for(const tool of tools){try{Promise.resolve(context.registerTool(tool,{signal:lifecycle.signal})).catch(()=>{});}catch{}}
- window.addEventListener('pagehide',()=>lifecycle.abort(),{once:true});
-}
