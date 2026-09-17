@@ -44,3 +44,12 @@ final result: passed
 - Service Worker 行为模板不变，仅增加字体和新视觉资产的打包清单；源码与字体许可随发布提供。
 - 实际 iPhone/iPad 的触摸、GPU 帧率、内存尚未测；截图来自真实 Chrome 页面和设备尺寸工具，不冒充真机验收。
 - 发布目标保持项目自己的 GitHub Pages：`https://haowangggggg-lang.github.io/star-chess-party/`。
+
+## 正式发布回读
+
+- 运行版本：`ef8432e7434146fc93c07c453b3cc91489eacac3`；GitHub Actions [35186671942](https://github.com/haowangggggg-lang/star-chess-party/actions/runs/35186671942) 测试、构建、部署全部成功。
+- 正式站点 HTML 引用新的宽/高环境、独立城堡、`index-BwKIhYau.js` 和 `index-Br_B_beX.css`。
+- 9 个关键线上资源（背景、城堡、棋盘/马 GLB、字体、JS、CSS、SW）均与本地生产构建 SHA-256 相同，记录 `qa/release-verification.json`。
+- 原生 Chrome 实际打开正式站点；旧离线缓存首次仍显示旧版，离开游戏页再重新进入后，新画面生效且原有棋局保留。
+- 正式站点点选 g1 马，正确出现 f3/h3/e2 等当局合法落点；桌面和手机截图为 `qa/public-desktop-ef8432e.png`、`qa/public-phone-ef8432e.png`。
+- 已打开的旧游戏页需全部关闭后重新进入，保持现有 Service Worker 不强行中断当前棋局的行为。
