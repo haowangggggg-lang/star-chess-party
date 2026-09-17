@@ -1,0 +1,97 @@
+{
+  "units": "one square = 1 unit",
+  "camera": "Perspective: desktop 50 degrees, phone 58 degrees, top view 86 degrees",
+  "files": [
+    {
+      "file": "models/pawn.glb",
+      "slot": "pawn: 8x8 board, ivory/navy material variant",
+      "bytes": 49984,
+      "triangles": 2016,
+      "bounds": [
+        0.531449019908905,
+        0.8839490915415809,
+        0.531449019908905
+      ],
+      "source": "scripts/build-models.mjs",
+      "visualTarget": "design/approved-cloud-party.png"
+    },
+    {
+      "file": "models/rook.glb",
+      "slot": "rook: 8x8 board, ivory/navy material variant",
+      "bytes": 96016,
+      "triangles": 3624,
+      "bounds": [
+        0.6402999758720398,
+        1.0569490100024268,
+        0.6402999758720398
+      ],
+      "source": "scripts/build-models.mjs",
+      "visualTarget": "design/approved-cloud-party.png"
+    },
+    {
+      "file": "models/knight.glb",
+      "slot": "knight: 8x8 board, ivory/navy material variant",
+      "bytes": 156332,
+      "triangles": 3804,
+      "bounds": [
+        0.8111211061477661,
+        1.4589736367342994,
+        0.6402999758720398
+      ],
+      "source": "scripts/build-models.mjs",
+      "visualTarget": "design/approved-cloud-party.png"
+    },
+    {
+      "file": "models/bishop.glb",
+      "slot": "bishop: 8x8 board, ivory/navy material variant",
+      "bytes": 95348,
+      "triangles": 2732,
+      "bounds": [
+        0.6402999758720398,
+        1.3369491006014869,
+        0.6402999758720398
+      ],
+      "source": "scripts/build-models.mjs",
+      "visualTarget": "design/approved-cloud-party.png"
+    },
+    {
+      "file": "models/queen.glb",
+      "slot": "queen: 8x8 board, ivory/navy material variant",
+      "bytes": 133220,
+      "triangles": 5040,
+      "bounds": [
+        0.6402999758720398,
+        1.330949058639817,
+        0.6402999758720398
+      ],
+      "source": "scripts/build-models.mjs",
+      "visualTarget": "design/approved-cloud-party.png"
+    },
+    {
+      "file": "models/king.glb",
+      "slot": "king: 8x8 board, ivory/navy material variant",
+      "bytes": 91920,
+      "triangles": 3672,
+      "bounds": [
+        0.6402999758720398,
+        1.4269490147707984,
+        0.6402999758720398
+      ],
+      "source": "scripts/build-models.mjs",
+      "visualTarget": "design/approved-cloud-party.png"
+    },
+    {
+      "file": "models/board.glb",
+      "slot": "Main interactive board. x = file - 3.5; z = 3.5 - rank. Top surface y=0.",
+      "bytes": 73092,
+      "triangles": 1356,
+      "bounds": [
+        9.050000190734863,
+        0.3129999921657145,
+        9.050000190734863
+      ],
+      "source": "scripts/build-models.mjs",
+      "visualTarget": "design/approved-cloud-party.png"
+    }
+  ]
+}

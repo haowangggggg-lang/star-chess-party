@@ -1,0 +1,14 @@
+<!doctype html><meta charset="utf-8"><title>星棋派对 · 模型验收</title>
+<style>body{margin:0;background:#d5e6ff;font:20px system-ui;color:#213e6b}canvas{display:block;width:100vw;height:85vh}p{margin:15px 30px}button{font:inherit;border:0;border-radius:14px;padding:12px 24px;background:white;color:#214579;cursor:pointer}#status{display:inline}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js","three/addons/":"/node_modules/three/examples/jsm/"}}</script>
+<canvas></canvas><p><button id="view">旋转查看</button> <span id="status">正在打开真实 GLB 模型…</span></p>
+<script type="module">
+import * as T from 'three';import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+const canvas=document.querySelector('canvas'),renderer=new T.WebGLRenderer({canvas,antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFSoftShadowMap;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.15;
+const scene=new T.Scene();scene.background=new T.Color('#d5e6ff');scene.add(new T.HemisphereLight('#fff7ec','#788db9',2.4));const sun=new T.DirectionalLight('#fff3da',3.3);sun.position.set(-6,12,8);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);sun.shadow.camera.left=-8;sun.shadow.camera.right=8;sun.shadow.camera.top=8;sun.shadow.camera.bottom=-8;sun.shadow.normalBias=.015;scene.add(sun);
+const camera=new T.PerspectiveCamera(36,1,.1,100);camera.position.set(0,12,14);camera.lookAt(0,0,0);const group=new T.Group();scene.add(group);const loader=new GLTFLoader();const board=(await loader.loadAsync('/public/models/board.glb')).scene;group.add(board);
+for(const [i,name]of ['rook','knight','bishop','queen','king','pawn'].entries()){const model=(await loader.loadAsync(`/public/models/${name}.glb`)).scene;model.position.set(i*1.30-3.25,0,1.0);group.add(model);const dark=model.clone(true);dark.traverse(o=>{if(o.isMesh){o.material=o.material.clone();o.material.color.set(o.material.name==='detail'?'#b2d6ed':'#244669');}});dark.position.z=-1.1;group.add(dark);}
+group.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;}});let spin=false;document.querySelector('button').onclick=()=>{spin=!spin;};
+document.querySelector('#status').textContent='已打开：棋盘 + 六类棋子，奶油白与深蓝两色。';
+function draw(){const w=innerWidth,h=innerHeight*.85;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();if(spin)group.rotation.y+=.004;renderer.render(scene,camera);requestAnimationFrame(draw);}draw();
+</script>

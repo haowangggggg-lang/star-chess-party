@@ -1,0 +1,21 @@
+{
+  "name": "star-chess-party",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "assets:models": "node scripts/build-models.mjs",
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build && node scripts/postbuild.mjs",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "node --test tests/*.test.mjs"
+  },
+  "dependencies": {
+    "chess.js": "1.4.0",
+    "three": "0.186.0"
+  },
+  "devDependencies": {
+    "@phosphor-icons/core": "2.1.1",
+    "vite": "8.3.0"
+  }
+}

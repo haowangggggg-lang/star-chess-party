@@ -2,3 +2,6 @@
 qa/
 *.tar.gz
 .openai/
+node_modules/
+.vite/
+build/

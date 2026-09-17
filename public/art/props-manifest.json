@@ -1,0 +1,95 @@
+{
+  "version": 1,
+  "createdAt": "2026-09-17",
+  "generationMode": "built-in image_gen, one standalone asset per call",
+  "approvedReference": "design/approved-cloud-party.png",
+  "processing": "Original generated RGBA PNGs copied intact. No compositing, cropping, resampling or alpha editing.",
+  "bboxConvention": "[left, top, right, bottom], pixel coordinates, right and bottom exclusive. Practical visible bounds use alpha >= 16; very faint alpha noise outside these bounds is retained from original.",
+  "assets": [
+    {
+      "filename": "team-sign.png",
+      "outputPath": "public/art/team-sign.png",
+      "dimensions": {
+        "width": 1254,
+        "height": 1254
+      },
+      "aspectRatio": "1:1",
+      "intendedSlot": "Independent prop in front of mint penguin on left grass of desktop game scene",
+      "text": "好棋，一起想出来",
+      "focalPoint": {
+        "x": 0.515,
+        "y": 0.529
+      },
+      "visualBoundingBoxAlpha16": [
+        147,
+        191,
+        1145,
+        1136
+      ],
+      "rawNonzeroAlphaBoundingBox": [
+        0,
+        3,
+        1218,
+        1254
+      ],
+      "alpha": {
+        "mode": "RGBA",
+        "min": 0,
+        "max": 255,
+        "fullyTransparentPixelCount": 891090,
+        "fullyTransparentRatio": 0.56667,
+        "partialAlphaPixelCount": 680526,
+        "cornerValues": [
+          0,
+          0,
+          1,
+          0
+        ]
+      },
+      "prompt": "Use case: stylized-concept\nAsset type: exactly ONE isolated 3D game prop with a true transparent alpha background, square 768 x 768.\nReference image: the supplied approved desktop/mobile chess-game design sheet is ONLY a visual style reference. Reproduce the small honey-colored wooden sign standing in front of the penguin on the LEFT of its desktop scene as an independent clean prop. Do not reproduce its surrounding screenshot, penguin, scenery, chessboard, or any UI.\nSubject: a charming squat rectangular sign made from three softly beveled horizontal honey-colored wood planks, supported by TWO short wooden vertical stakes extending below. Same pale honey wood tone, gentle grain, rounded toy-like edges, soft dimensional relief and slight playful angle as the approved prop. Front surface is fully visible and broad enough for clear Chinese lettering. Keep complete sign and full stakes visible with comfortable transparent margins.\nExact text, verbatim, and the only text on the image: “好棋，一起想出来”\nArrange this exact sentence attractively in two centered lines if necessary: first line “好棋，” and second line “一起想出来”. Warm dark-brown carved/printed Chinese characters, legible and correctly formed. No extra words, symbols, icons or decorative hearts.\nMaterials and lighting: polished soft 3D toy rendering, finely subtle wood grain, warm diffuse daylight, soft sculpted edges. Match the approved sign and environment art style; not vector illustration or realistic weathered wood.\nConstraints: true RGBA transparent background, no white/gray/checkered backdrop baked into pixels, no ground, no grass, no floor, no detached shadow plane, no scene, no characters, no chess pieces, no game UI, no border, no watermark. One sign only.",
+      "visualQA": "Passed. Three pale honey wood planks and two stakes, rounded polished toy material. Correct Chinese phrase rendered in two lines. No scene, character or UI included. Alpha background confirmed; practical visible subject fully contained with margins."
+    },
+    {
+      "filename": "victory-crown.png",
+      "outputPath": "public/art/victory-crown.png",
+      "dimensions": {
+        "width": 1254,
+        "height": 1254
+      },
+      "aspectRatio": "1:1",
+      "intendedSlot": "Independent centered crown above live victory-state panel",
+      "focalPoint": {
+        "x": 0.501,
+        "y": 0.504
+      },
+      "visualBoundingBoxAlpha16": [
+        129,
+        279,
+        1128,
+        984
+      ],
+      "rawNonzeroAlphaBoundingBox": [
+        41,
+        19,
+        1218,
+        1226
+      ],
+      "alpha": {
+        "mode": "RGBA",
+        "min": 0,
+        "max": 255,
+        "fullyTransparentPixelCount": 1163153,
+        "fullyTransparentRatio": 0.73968,
+        "partialAlphaPixelCount": 408234,
+        "cornerValues": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "prompt": "Use case: stylized-concept\nAsset type: exactly ONE isolated 3D toy crown game prop with a true transparent alpha background, square 768 x 768.\nReference image role: the supplied approved design sheet is a visual style reference. Faithfully match ONLY the little golden crown centered at the top of the victory popup in the bottom-right state of the desktop portion. Extract its simple charming toy design into a large clean standalone prop. Do not reproduce any part of the popup, surrounding scene or screenshot.\nSubject: a small warm golden-yellow toy crown, upright, gently three-dimensional, with a squat rounded gold band, three clearly readable rounded peaks tipped with small golden spheres (central peak tallest), softly beveled edges and one small warm-orange circular/rounded jewel-like detail on the front. Front three-quarter view like the reference; compact, cute, soft and satisfying. Complete crown centered with generous transparent margins, fills about 65% of square width.\nStyle/material: polished soft 3D clay-toy rendering, golden plastic/clay with warm amber shading and subtle bright highlights, not realistic metallic royal jewelry, consistent with approved game's rounded toys. Soft daylight illumination.\nCritical exclusions: TRUE RGBA TRANSPARENT BACKGROUND, no opaque white/gray/checkerboard background baked into pixels. NO stars, confetti, sparkles, text, cards, panels, buttons, UI, characters, chessboard, floor, pedestal, detached shadow plane, scene, border, logo or watermark. The crown must be the only object. One image only.",
+      "visualQA": "Passed. Single rounded golden-yellow three-peak toy crown with amber jewel and soft highlights. No stars, confetti, text or popup. Alpha background confirmed; practical visible subject fully contained with margins."
+    }
+  ]
+}

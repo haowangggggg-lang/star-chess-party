@@ -22,14 +22,20 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v6
-      - name: Check JavaScript syntax
-        run: |
-          node --check dist/engine.mjs
-          node --check dist/app.mjs
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Test chess rules and engine coordination
+        run: npm test
+      - name: Build static site, offline cache and source distribution
+        run: npm run build
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:
-          path: dist
+          path: build
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4

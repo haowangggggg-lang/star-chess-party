@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "package": "stockfish",
+  "version": "19.0.0",
+  "flavor": "lite-single",
+  "license": "GPL-3.0",
+  "preparedAt": "2026-09-17T02:33:30.172519+00:00",
+  "npm": {
+    "metadataUrl": "https://registry.npmjs.org/stockfish/19.0.0",
+    "tarballUrl": "https://registry.npmjs.org/stockfish/-/stockfish-19.0.0.tgz",
+    "integrity": "sha512-jDyYLbqNpboQcMs5HodTHI2CrKL74zkQWb1+sgoNXw5HI6avTblW4G0X7afFt3BBOc6VbTSkOV64EUxm/DWSpg==",
+    "tarballBytes": 161239627,
+    "wholeTarballIntegrityVerified": true,
+    "installScriptsExecuted": false
+  },
+  "source": {
+    "repository": "https://github.com/nmrugg/stockfish.js",
+    "commit": "54fde71d90c7c403964f6cacef48f7bbec495df1",
+    "archiveUrl": "https://codeload.github.com/nmrugg/stockfish.js/tar.gz/54fde71d90c7c403964f6cacef48f7bbec495df1",
+    "archive": {
+      "path": "licenses/stockfish/stockfish.js-54fde71d90c7c403964f6cacef48f7bbec495df1.tgz",
+      "bytes": 632604,
+      "sha256": "ff4955eb2b2c6e49152dee875b28794be58cf52a8f019bcb230251207dbdce09"
+    },
+    "npmGitHead": "54fde71d90c7c403964f6cacef48f7bbec495df1",
+    "releaseTag": "v19.0.0",
+    "releaseCommit": "9cb3e5066d48f1a35d792afeda36eff37ae60570",
+    "identicalGitTree": "b86a9b4ce4d5754a8130c65940c998ef1b719a2a",
+    "upstreamStockfishCommit": "edb0d9db6731067ec50ce619ff372b463bc4dd5d",
+    "localSourceModifications": false,
+    "upstreamBuildCommand": "node build.js --single-threaded --lite --no-split -f",
+    "upstreamExpectedEmscripten": "3.1.7",
+    "minifier": "build.js optionally requires uglify-js; upstream does not pin its version",
+    "byteIdenticalRebuildVerified": false
+  },
+  "runtimeFiles": [
+    {
+      "path": "public/engine/stockfish-19-lite-single.js",
+      "bytes": 21415,
+      "sha256": "d3344124ab067fb0b90ee77873bb8e9fbf5fc01bc525fe714b0f942581e889e6"
+    },
+    {
+      "path": "public/engine/stockfish-19-lite-single.wasm",
+      "bytes": 1787571,
+      "sha256": "57ac2d72312aba346760e3f173f687a8c211208e97a87268436f7f0e10bb5387"
+    },
+    {
+      "path": "public/engine/COPYING.txt",
+      "bytes": 35821,
+      "sha256": "0b383d5a63da644f628d99c33976ea6487ed89aaa59f0b3257992deac1171e6b"
+    }
+  ],
+  "upstreamReleaseDigestsVerified": true,
+  "network": {
+    "filename": "nn-61e7af4bb97d.nnue",
+    "file": {
+      "path": "licenses/stockfish/nn-61e7af4bb97d.nnue",
+      "bytes": 1166381,
+      "sha256": "61e7af4bb97d51eeeb25d322916f86513b5cd3a827ce189c98c6e31946f99e5b"
+    },
+    "officialUrl": "https://tests.stockfishchess.org/api/nn/nn-61e7af4bb97d.nnue",
+    "downloadedFrom": "https://media.githubusercontent.com/media/lichess-org/lila/master/public/lifat/nnue/nn-61e7af4bb97d.nnue",
+    "lfsPointerUrl": "https://raw.githubusercontent.com/lichess-org/lila/master/public/lifat/nnue/nn-61e7af4bb97d.nnue",
+    "verifiedAgainstLfsOid": true,
+    "verifiedByteForByteInInitializedWasmMemory": true,
+    "runtimeMemoryOffset": 40240,
+    "separateRuntimeDownloadRequired": false
+  },
+  "runtimeContract": {
+    "workerType": "classic",
+    "workerPath": "engine/stockfish-19-lite-single.js",
+    "wasmPath": "engine/stockfish-19-lite-single.wasm",
+    "additionalWorkerFiles": [],
+    "requiredWasmContentType": "application/wasm",
+    "crossOriginIsolationRequired": false,
+    "initialLinearMemoryBytesObserved": 134217728,
+    "uciNameObserved": "Stockfish 19 Lite WASM",
+    "threadsMaximumObserved": 1,
+    "eloRangeObserved": [
+      1320,
+      3190
+    ]
+  },
+  "verification": {
+    "nodeUciSmokePassed": true,
+    "uciokObserved": true,
+    "readyokObserved": true,
+    "bestmoveObserved": "e2e4",
+    "browserWorkerTested": false,
+    "iosSafariTested": false
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "version": 1,
+  "createdAt": "2026-09-17",
+  "generationMode": "built-in image_gen",
+  "approvedReference": "design/approved-cloud-party.png",
+  "coordinateSystem": "Normalized [0,1] image coordinates, origin at top left. Polygons are approximate visual measurements for positioning and must be checked during desktop/mobile rendered QA.",
+  "scope": "Environment assets only. Overlay live board, independent character assets, text and interactive UI in frontend.",
+  "assets": [
+    {
+      "filename": "cloud-stage-wide.png",
+      "outputPath": "public/art/cloud-stage-wide.png",
+      "dimensions": {
+        "width": 1920,
+        "height": 1200
+      },
+      "originalDimensions": {
+        "width": 1586,
+        "height": 992
+      },
+      "aspectRatio": "8:5",
+      "processing": "Copied original, then sips -z 1200 1920. No crop, painting, compositing, or content replacement. Original retained.",
+      "sourceRegion": {
+        "x": 0,
+        "y": 0,
+        "width": 1586,
+        "height": 992
+      },
+      "intendedSlot": "Desktop and landscape tablet full game scene background behind live 3D chessboard and independent characters",
+      "focalPoint": {
+        "x": 0.5,
+        "y": 0.45
+      },
+      "stonePlateauPolygon": [
+        [
+          0.265,
+          0.155
+        ],
+        [
+          0.731,
+          0.155
+        ],
+        [
+          0.799,
+          0.738
+        ],
+        [
+          0.196,
+          0.738
+        ]
+      ],
+      "conservativeClearOverlayPolygon": [
+        [
+          0.285,
+          0.185
+        ],
+        [
+          0.71,
+          0.185
+        ],
+        [
+          0.76,
+          0.695
+        ],
+        [
+          0.23,
+          0.695
+        ]
+      ],
+      "prompt": "Use case: stylized-concept\nAsset type: a single finished standalone desktop game ENVIRONMENT BACKGROUND asset, landscape 1920 x 1200 pixels (8:5). This is scenery for a live game, NOT a UI design, NOT a website screenshot, NOT a contact sheet.\nReference image role: the provided approved design contains desktop and mobile mockups. Faithfully match ONLY its bright sky / cloud / floating-island art direction, grassy island material, warm cream stone, gray-lavender rocky cliff and delicate flowers. Do not reproduce any UI or characters from the reference.\nScene: joyful sunny blue sky with soft voluminous white clouds; a few tiny faraway grass-covered floating islands. One dominant large grass-covered floating island fills about 85% of the canvas width and is positioned in the middle-to-lower image. High downward-looking camera angle, consistent with the elevated chessboard perspective of the approved left desktop reference.\nMain island surface: a very large perfectly clear, smooth light-cream stone plateau at center, roughly rectangular in plan but seamlessly part of the island, spanning about 60% of image width and 64% of image height. It is one uninterrupted neutral plane for a separately rendered 3D board to be added later. It must NOT have any squares, tiles, checkerboard pattern, outlined rectangle, grid, game markings, raised frame, border, chessboard, numbers, or letters. Keep all its center absolutely clear.\nPeripheral environment: soft green grass and tiny cream/pink flowers at the edge, chunky gray-lavender cliff rocks along the front edge, small broad-leaf plants. Reserve the grassy left and right peripheral areas empty for independently composited characters. Sky and clouds above and at corners. Soft sunlit polished 3D clay-toy quality exactly like approved reference, not flat vector or photorealistic.\nCritical exclusions: ZERO characters, penguins, rabbits, robots, people, chess pieces, chessboards, squares, tiles, text, letters, numbers, labels, signs, buttons, panels, HUD, logos, watermarks, or UI. No black outlines. Only the environment. Create one image.",
+      "visualQA": {
+        "status": "passed",
+        "observations": "Blue sky, fluffy clouds, distant small floating islands, cream stone plateau, grassy floral edge and gray-lavender rocks match the chosen direction. Center is clear; no board/grid, chess pieces, characters, lettering, or UI. Warm stone has natural fine cracks near margins."
+      }
+    },
+    {
+      "filename": "cloud-stage-tall.png",
+      "outputPath": "public/art/cloud-stage-tall.png",
+      "dimensions": {
+        "width": 1024,
+        "height": 1536
+      },
+      "originalDimensions": {
+        "width": 1024,
+        "height": 1536
+      },
+      "aspectRatio": "2:3",
+      "processing": "Direct copy. No crop or pixel modification. Original retained.",
+      "sourceRegion": {
+        "x": 0,
+        "y": 0,
+        "width": 1024,
+        "height": 1536
+      },
+      "intendedSlot": "Portrait mobile full game scene background with castle island at top and clouds below",
+      "focalPoint": {
+        "x": 0.5,
+        "y": 0.46
+      },
+      "stonePlateauPolygon": [
+        [
+          0.138,
+          0.289
+        ],
+        [
+          0.861,
+          0.289
+        ],
+        [
+          0.95,
+          0.613
+        ],
+        [
+          0.064,
+          0.613
+        ]
+      ],
+      "conservativeClearOverlayPolygon": [
+        [
+          0.165,
+          0.31
+        ],
+        [
+          0.833,
+          0.31
+        ],
+        [
+          0.91,
+          0.59
+        ],
+        [
+          0.11,
+          0.59
+        ]
+      ],
+      "prompt": "Use case: stylized-concept\nAsset type: one finished standalone mobile game ENVIRONMENT BACKGROUND, portrait 1024 x 1536 pixels. This is only scenery for a live game, NEVER a UI design, app screenshot, contact sheet, or mockup.\nReference image role: provided approved design sheet is the exact art direction reference. Match the right-hand mobile mockup's blue sky, white clouds, floating island, small distant fairytale castle, warm creamy stone, green grass and chunky gray-lavender cliff rocks. Remove ALL interface, characters and chess contents from the reference.\nComposition: bright blue sky at top with softly rounded white clouds, a beautiful small golden-roof castle on a distant floating grass island centered near the top quarter. One dominant floating grass island below it, almost full width of portrait frame. A level unobstructed light-cream stone plateau occupies the central area, roughly x=3% to 97% and y=31% to 71%, about 94% of image width and 40% of height. Elevated high downward-looking camera similar to approved mobile reference, readable large flat supporting surface.\nThe plateau must be one smooth uninterrupted blank cream stone plane, seamless enough to support a separate real 3D chessboard overlay later. Absolutely NO squares, tiles, checkerboard, grid, lines, numbers, letters, outlined frame, raised border, or game markings. Do not draw a board.\nAround the plateau: narrow irregular grass fringe, tiny cream/pink flowers and a few broad-leaf plants; chunky gray-lavender rocks form the front cliff beneath it; a soft bank of white clouds at the bottom. Reserve some open grass on both sides for characters composited later. Soft sun, polished rounded 3D clay-toy quality, visually faithful to approved design materials and palette.\nCritical exclusions: ZERO chessboards, chess pieces, characters, animals, penguins, rabbits, robots, people, text, buttons, cards, labels, wooden signs, HUD, UI, logos, watermarks, or symbols. Entire image is ONLY the background environment. One image only.",
+      "visualQA": {
+        "status": "passed",
+        "observations": "Matches blue-sky, cream-stone, grass, flowers and lavender-rock materials of chosen reference. Distant golden-roof castle near top, clouds below. Blank perspective plateau has no chessboard/grid, chess pieces, characters, lettering, or UI.",
+        "layoutNote": "Generated visible blank plateau occupies approximately y=29%-61% and widens toward viewer. Use measured polygon, not requested nominal 40% height, for real-board alignment."
+      }
+    }
+  ]
+}

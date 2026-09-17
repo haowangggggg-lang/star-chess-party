@@ -1,0 +1,143 @@
+{
+  "version": 1,
+  "asset_type": "raster character cutouts, not 3D models",
+  "generated_with": "built-in image_gen",
+  "approved_reference": "Generated original retained as the asset file in this package",
+  "approved_reference_size": [
+    1586,
+    992
+  ],
+  "method": "Each character independently generated with the same approved full-screen image as identity/style reference. No screenshot panel crops used as implementation. Generated alpha preserved unchanged.",
+  "alpha_note": "All three PNGs verified RGBA with alpha range 0..255. Most interior pixels have alpha 252..254 from the generated output; source alpha preserved. Very low alpha fringe pixels extend beyond visible silhouette, so use visible_bounds_alpha16 for layout measurement.",
+  "assets": [
+    {
+      "file": "penguin.png",
+      "source_path": "Generated original retained as the asset file in this package",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "aspect_ratio": 1,
+      "bytes": 1044839,
+      "crop": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "visible_bounds_alpha16": [
+        103,
+        113,
+        1158,
+        1149
+      ],
+      "focal_point_normalized": [
+        0.57,
+        0.38
+      ],
+      "anchor_normalized": [
+        0.51,
+        0.917
+      ],
+      "reference_region_approx": [
+        72,
+        220,
+        270,
+        427
+      ],
+      "intended_slot": "Desktop left foreground companion; mobile upper-left companion; player avatar can use face crop; use contain for full-body views.",
+      "transparent_pixels": 834369,
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "prompt": "Use case: background-extraction / identity-preserve. Asset type: one transparent PNG game character sprite. Input image 1 is the APPROVED game design reference, not an interface to reproduce. Extract and faithfully re-render ONLY the large mint-green penguin on the LEFT side of its desktop game view. Preserve that exact original character identity and silhouette: round soft mint green penguin with cream heart-shaped face and large cream belly, small warm orange-yellow open beak, small orange-yellow feet, tiny rosy cheeks, happy curved closed crescent eyes, left flipper down and outward on viewer left, right flipper raised to wave on viewer right. Keep its exact welcoming smile and proportions, soft rounded 3D clay/plush-toy rendering, mint green body and cream face, soft studio lighting from upper left. Full character head to feet, feet completely visible, no signs or objects covering belly. Center the isolated character in a square 1024x1024 image, fill about 85% of height, minimum 6% clear padding on every side. TRUE TRANSPARENT BACKGROUND with actual alpha channel, clean antialiased alpha edges. No drawn checkerboard, no solid white backdrop, no floor or cast floor shadow, no pedestal, no text, no logo, no chessboard, no scenery, no rabbit, no other characters. Do not redesign, do not change species, color, pose or decorations. The output is a raster cutout, not a 3D model."
+    },
+    {
+      "file": "rabbit.png",
+      "source_path": "Generated original retained as the asset file in this package",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "aspect_ratio": 1,
+      "bytes": 836771,
+      "crop": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "visible_bounds_alpha16": [
+        231,
+        53,
+        1118,
+        1206
+      ],
+      "focal_point_normalized": [
+        0.44,
+        0.57
+      ],
+      "anchor_normalized": [
+        0.47,
+        0.962
+      ],
+      "reference_region_approx": [
+        893,
+        219,
+        1103,
+        452
+      ],
+      "intended_slot": "Desktop right foreground companion; mobile upper-right companion; use contain with ears and feet visible.",
+      "transparent_pixels": 963893,
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "prompt": "Use case: background-extraction / identity-preserve. Asset type: one transparent PNG game character sprite. Input image 1 is the APPROVED game design reference, not an interface to reproduce. Extract and faithfully re-render ONLY the large peach-pink rabbit on the RIGHT side of its desktop game view. Preserve that exact original character identity and silhouette: very large round peach-pink head/body, two long thick soft ears with coral-pink inner ears, left ear rises upward and leans slightly to viewer left, right ear points diagonally toward viewer right; tiny cream muzzle, little dark nose, open joyful smile with pink tongue, curved closed happy eyes, round pink blush cheeks, small plump peach-pink forepaws resting against its chest and cheeks, squat seated body with tiny visible rounded feet. Look carefully at the approved rabbit, maintain its same pleasing proportions and welcoming smile. Soft rounded 3D clay/plush-toy rendering, soft studio lighting from upper left matching the reference. Full character head to feet, ears and feet completely visible. Center the isolated character in a square 1024x1024 image, fill about 85% of height, minimum 6% clear padding on every side. TRUE TRANSPARENT BACKGROUND with actual alpha channel, clean antialiased alpha edges. No drawn checkerboard, no solid white backdrop, no floor or cast floor shadow, no pedestal, no text, no logo, no chessboard, no scenery, no penguin, no other characters. Do not redesign, do not add accessories, do not change species, color, or the hands-at-chest seated pose. The output is a raster cutout, not a 3D model."
+    },
+    {
+      "file": "cloud-bot.png",
+      "source_path": "Generated original retained as the asset file in this package",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "aspect_ratio": 1,
+      "bytes": 895570,
+      "crop": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "visible_bounds_alpha16": [
+        79,
+        119,
+        1173,
+        1125
+      ],
+      "focal_point_normalized": [
+        0.49,
+        0.54
+      ],
+      "anchor_normalized": [
+        0.5,
+        0.5
+      ],
+      "reference_region_approx": [
+        864,
+        60,
+        975,
+        162
+      ],
+      "intended_slot": "Floating opponent portrait beside difficulty/status in upper-right HUD on desktop and mobile; use contain.",
+      "transparent_pixels": 801975,
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "prompt": "Use case: background-extraction / identity-preserve. Asset type: one transparent PNG game character sprite. Input image 1 is the APPROVED game design reference, not an interface to reproduce. Extract and faithfully re-render ONLY the small floating CLOUD CHESS OPPONENT in the UPPER RIGHT of the desktop game view. Preserve that exact character identity and silhouette: compact fluffy puffy white cloud body made of soft rounded cloud lobes, rounded-square vibrant cornflower/royal-blue face screen inset in the white cloud, two simple white oval eyes, tiny white curved smile, a single small round blue cap/bump on the top center. The cloud has no humanoid torso, arms or legs, no antennas, no extra hat brim or accessories; it is simply the adorable white cloud shown in the reference. Front-facing slight three-quarter view matching the reference, soft rounded 3D clay-toy rendering and upper-left studio lighting, warm white cloud and saturated blue screen, cheerful friendly expression. Complete floating cloud including top blue bump, no cropping. Center the isolated character in a square 1024x1024 image, character fills about 82% of width with generous full-outline padding. TRUE TRANSPARENT BACKGROUND with actual alpha channel, clean antialiased alpha edges. No drawn checkerboard, no solid white backdrop, no floor or cast floor shadow, no pedestal, no text or speech bubble, no logo, no chessboard, no scenery, no penguin or rabbit, no other characters. Do not redesign the cloud. The output is a raster cutout, not a 3D model."
+    }
+  ]
+}
