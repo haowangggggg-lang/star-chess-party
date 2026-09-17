@@ -51,4 +51,11 @@ final result: passed
 
 ## 发布
 
-目标仍为用户自己的GitHub Pages：`https://haowangggggg-lang.github.io/star-chess-party/`。正式版本与线上回读将在发布后补充。
+目标仍为用户自己的GitHub Pages：`https://haowangggggg-lang.github.io/star-chess-party/`。正式运行版本：`5abb75beccdfb8c0373bd1c4e7f8334c85017f12`，GitHub Actions [35200530360](https://github.com/haowangggggg-lang/star-chess-party/actions/runs/35200530360) 成功。
+
+- 线上HTML、JS、CSS、Service Worker、三张环境与棋盘模型共8个文件的SHA-256均与本地生产构建一致，记录 `qa/stone-release-verification.json`。
+- Chrome正式页初次仍由旧Service Worker控制；应用面板确认新worker已下载、等待激活。验收中通过该站点worker的 `skipWaiting` 按钮激活并重新加载，存档未清除。未修改应用自身的缓存升级策略、未勾选网络绕过。
+- 新worker激活后，正式页面已显示对齐后的梯形底面；俯视/立体切换保持边缘稳定。
+- 正式手机页面点击g1马头，合法落点正确；实际 Ng1-f3，电脑 Nb8-c6；悔棋恢复验收前棋局。
+- 正式截图：`qa/stone-public-desktop-5abb75b.png`、`qa/stone-public-phone-selected-5abb75b.png`。
+- 对于仍显示旧版本的已有页面，需关闭本游戏全部页面后重新打开，以允许已下载的新worker接管。
