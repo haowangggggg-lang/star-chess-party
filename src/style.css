@@ -286,3 +286,182 @@ p, h1, h2, h3 { margin: 0; }
   .game-shell[data-view="top"] .friend-penguin,
   .game-shell[data-view="top"] .friend-rabbit { visibility: hidden; }
 }
+
+/* The approved scene uses one calibrated landscape / portrait composition.
+   The canvas fills it so its projected board and the raster stone share a plane. */
+@font-face {
+  font-family: "Cloud Party Display";
+  src: url("/fonts/cloud-party-title.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+.game-shell {
+  --board-left: 0%; --board-top: 0%; --board-width: 100%; --board-height: 100%;
+  container-type: size;
+}
+.brand h1, #turn-title, .round-tool span, #opponent-name, .result-card h2 {
+  font-family: "Cloud Party Display", "Yuanti SC", "PingFang SC", sans-serif;
+  font-weight: 400;
+}
+.hud { inset: max(17px, 3.1%, env(safe-area-inset-top)) 1.8% auto; }
+.brand h1 { font-size: clamp(23px, 2.3cqw, 38px); gap: 4px; letter-spacing: .02em; }
+.brand-star { width: .82em; height: .82em; }
+.brand p { display: flex; align-items: center; gap: 7px; margin-top: 13px; font-size: clamp(14px, 1.6cqw, 23px); font-weight: 500; letter-spacing: .08em; }
+.brand-heart { width: 1em; height: 1em; filter: invert(83%) sepia(15%) saturate(1387%) hue-rotate(288deg) brightness(104%) contrast(100%); }
+.settings-open { width: 32px; height: 32px; padding: 7px; opacity: .83; }
+.settings-open img { width: 18px; height: 18px; }
+.opponent { top: 3.2%; right: 1.9%; width: 23%; min-width: 0; max-width: none; }
+.opponent-avatar { width: 42%; }
+.opponent-copy { gap: 9px; }
+#opponent-name { font-size: clamp(13px, 1.62cqw, 23px); }
+#opponent-state { max-width: 15em; padding: 7px 12px; border-radius: 11px; font-size: clamp(12px, 1.3cqw, 18px); font-weight: 500; }
+.friend-penguin { width: 21%; left: .2%; top: 26%; }
+.friend-rabbit { width: 21%; right: 1.5%; top: 27%; }
+.team-sign { width: 18%; left: 1%; top: 51.5%; }
+#coordinates { font-family: "Yuanti SC", "PingFang SC", sans-serif; font-size: clamp(11px, 1.25cqw, 19px); font-weight: 500; color: #8d8277; }
+.board-coordinate { transform: translate(-50%, -50%); }
+.turn-pill { bottom: 3.5%; min-width: 0; min-height: 0; height: 8.7cqh; max-height: 76px; padding: 5px 22px 5px 8px; gap: 7px; background: #e4f5fff5; box-shadow: inset 0 2px 4px #fff, 0 5px 9px #3f6b8526; }
+#turn-avatar { height: 6.6cqh; width: 6.6cqh; max-height: 59px; max-width: 59px; }
+#turn-title { font-size: clamp(16px, 1.75cqw, 25px); }
+#message { bottom: .6%; font-size: 10px; font-weight: 500; color: #355d80; width: 42%; }
+.toolbar { bottom: 2.5%; right: 1.6%; gap: 1.55cqw; }
+.round-tool { width: 7.6cqw; height: 7.6cqw; max-width: 116px; max-height: 116px; min-width: 64px; min-height: 64px; gap: 3px; border: 0; background: #dfedfff5; box-shadow: inset 0 3px 5px #ffffffaf, 0 6px 12px #517aa029; }
+.round-tool img { width: 43%; height: 43%; }
+.round-tool span { font-size: clamp(13px, 1.48cqw, 22px); }
+.round-tool:disabled { opacity: .72; }
+.game-meta { inset: auto 1.7% .5%; opacity: .64; }
+.game-meta small { font-size: 8px; }
+.suggestion-bar { bottom: 13.5%; }
+.sheet::backdrop { background: #172e486b; backdrop-filter: blur(2px); }
+.result-card { border-radius: 34px; box-shadow: 0 12px 0 #dfcdb3, 0 24px 58px #152c5740, inset 0 2px 8px #fff; }
+.result-card h2 { font-size: 34px; }
+
+@media (max-aspect-ratio: 6/5) {
+  .game-shell { --board-left: 0%; --board-top: 0%; --board-width: 100%; --board-height: 100%; min-height: 600px; }
+  .scene-background img { object-fit: fill; }
+  .hud { inset: max(18px, 2.2%, env(safe-area-inset-top)) 4.6% auto; }
+  .brand h1 { font-size: clamp(23px, 5.85cqw, 34px); gap: 3px; }
+  .brand p { margin-top: 12px; font-size: clamp(14px, 4cqw, 20px); gap: 5px; letter-spacing: .035em; }
+  .settings-open { width: 28px; height: 28px; padding: 6px; opacity: .72; }
+  .settings-open img { width: 16px; height: 16px; }
+  .opponent { top: 5.6%; right: 4%; width: 48%; min-width: 0; max-width: none; }
+  .opponent-avatar { width: 45%; }
+  .opponent-copy { gap: 7px; }
+  #opponent-name { font-size: clamp(12px, 3.6cqw, 18px); }
+  #opponent-state { font-size: clamp(11px, 3cqw, 15px); padding: 6px 8px; border-radius: 10px; }
+  .friend-penguin { top: 20.2%; left: .4%; width: 28%; }
+  .friend-rabbit { top: 16.9%; right: -.5%; width: 31%; }
+  .team-sign { display: none; }
+  #coordinates { font-size: clamp(10px, 2.65cqw, 17px); }
+  .play-controls { inset: 0; display: block; }
+  .turn-pill { position: absolute; left: 50%; top: 76.3%; bottom: auto; transform: translateX(-50%); height: 6.1cqh; min-height: 44px; max-height: 72px; padding: 4px 18px 4px 6px; gap: 6px; }
+  #turn-avatar { width: 4.8cqh; height: 4.8cqh; max-height: 55px; max-width: 55px; }
+  #turn-title { font-size: clamp(16px, 4.3cqw, 24px); }
+  #message { position: absolute; left: 50%; top: 83%; bottom: auto; transform: translateX(-50%); width: 88%; min-height: 0; font-size: clamp(10px, 2.7cqw, 13px); line-height: 1.5; }
+  .toolbar { position: absolute; inset: auto 5% 4.5%; width: 90%; display: flex; justify-content: space-between; transform: none; gap: 0; margin: 0; }
+  .round-tool { width: 23.5cqw; height: 23.5cqw; min-width: 0; min-height: 0; max-width: 132px; max-height: 132px; padding: 10px; gap: 4px; }
+  .round-tool img { width: 41%; height: 41%; }
+  .round-tool span { font-size: clamp(14px, 3.65cqw, 21px); }
+  .game-meta { position: absolute; inset: auto 0 1.2%; width: 100%; justify-content: center; gap: 13px; opacity: .64; }
+  .game-meta small { font-size: 8px; }
+  .suggestion-bar { bottom: 25%; }
+}
+@media (min-width: 701px) and (max-aspect-ratio: 6/5) {
+  .opponent { right: 7%; width: 39%; top: 4%; }
+  .friend-penguin { top: 14%; width: 24%; }
+  .friend-rabbit { top: 12%; width: 27%; }
+  .turn-pill { top: 79%; }
+  #message { top: 85.7%; }
+  .toolbar { inset: auto 18% 1.8%; width: 64%; }
+  .round-tool { width: 11cqh; height: 11cqh; max-width: 120px; max-height: 120px; }
+  .game-meta { bottom: .3%; }
+}
+@media (max-width: 700px) and (orientation: portrait) and (max-height: 740px) {
+  .opponent { top: 7%; width: 47%; }
+  .turn-pill { top: 74.5%; min-height: 38px; }
+  #message { top: 81%; font-size: 10px; }
+  .toolbar { bottom: 4%; }
+  .round-tool { width: 20cqw; height: 20cqw; padding: 8px; }
+  .round-tool span { font-size: 13px; }
+}
+@media (orientation: landscape) and (max-height: 600px) {
+  .brand h1 { font-size: 22px; }
+  .brand p { font-size: 12px; margin-top: 9px; }
+  .round-tool { min-width: 54px; min-height: 54px; }
+  .turn-pill { min-height: 36px; }
+  #turn-title { font-size: 14px; }
+  #turn-avatar { min-height: 28px; min-width: 28px; }
+  #message { font-size: 9px; bottom: .2%; }
+}
+
+.turn-avatar-crop { display: block; flex: 0 0 auto; width: 6.6cqh; height: 6.6cqh; max-width: 59px; max-height: 59px; overflow: hidden; border-radius: 50%; background: #82d7b2; }
+.turn-avatar-crop #turn-avatar { width: 160%; height: 160%; max-width: none; max-height: none; transform: translate(-19%, -5%); object-fit: contain; }
+@media (max-width: 700px) and (orientation: portrait) {
+  .friend-penguin { top: 19.6%; left: -.3%; width: 35%; height: 10.4cqh; overflow: hidden; border-radius: 0; }
+  .friend-penguin img { max-width: none; }
+  .friend-rabbit { top: 16.2%; left: 67.3%; right: auto; width: 36.2%; clip-path: inset(0 0 19% 0); }
+  .turn-avatar-crop { width: 4.8cqh; height: 4.8cqh; max-width: 55px; max-height: 55px; }
+  .toolbar { left: 4.3%; right: 4.3%; width: 91.4%; }
+  .round-tool { width: 25.5cqw; height: 9.4cqh; }
+  .round-tool:nth-child(2) { width: 29cqw; }
+  .round-tool img { width: 33px; height: 33px; }
+}
+@media (max-width: 700px) and (orientation: portrait) and (max-height: 740px) {
+  .round-tool { height: 10cqh; }
+  .round-tool img { width: 28px; height: 28px; }
+}
+
+.scene-background img { filter: saturate(.88) brightness(1.035); }
+.brand h1 { -webkit-text-stroke: .25px currentColor; }
+@media (max-width: 700px) and (orientation: portrait) {
+  .opponent { width: 52%; }
+  .opponent-avatar { width: 42%; }
+  #opponent-state { font-size: 11px; white-space: nowrap; padding: 6px 8px; }
+}
+.game-shell { max-width: calc(100svh * 1.9); margin-inline: auto; }
+.castle-island { display: none; pointer-events: none; }
+.friend-rabbit { z-index: 2; }
+@media (max-width: 700px) and (orientation: portrait) {
+  .castle-island { display: block; position: absolute; z-index: -1; left: 19.7%; top: 13.7%; width: 56.6%; height: 14.7cqh; overflow: hidden; }
+  .castle-island img { width: 100%; filter: saturate(.84) brightness(1.05); }
+}
+@media (max-width: 700px) and (orientation: portrait) {
+  .friend-penguin { height: 9.2cqh; }
+}
+.scene-background img { filter: saturate(.8) brightness(1.08); }
+#coordinates { font-size: clamp(11px, 1.4cqw, 20px); }
+.settings-open::after { content: ""; position: absolute; inset: -8px; }
+@media (max-width: 700px) and (orientation: portrait) {
+  #opponent-state { font-size: 12px; width: max-content; max-width: 34cqw; }
+  #coordinates { font-size: clamp(11px, 3cqw, 16px); }
+}
+.result-sheet { width: min(400px, calc(100vw - 64px)); }
+.result-card { padding: 43px 29px 24px; }
+.result-card #result-detail { font-size: 14px; margin-top: 8px; }
+.result-card .dialog-actions { display: grid; grid-template-columns: 1fr 1fr; margin-top: 20px; gap: 13px 6px; }
+.result-card #again { grid-column: 1 / -1; min-height: 46px; font-size: 19px; }
+.result-card #choose-next, .result-card #close-result { min-height: 30px; font-size: 11px; padding: 5px 4px; }
+.victory-crown { top: -76px; width: 135px; }
+@media (max-width: 700px) and (orientation: portrait) {
+  .result-card { padding: 45px 22px 22px; }
+  .result-card h2 { font-size: 29px; }
+  .victory-crown { top: -74px; width: 132px; }
+}
+.brand p { font-family: "Cloud Party Display", "Yuanti SC", "PingFang SC", sans-serif; font-weight: 400; text-shadow: 0 1px 3px #376aae, 0 0 8px #5495e9; }
+#message { font-weight: 600; color: #254d76; text-shadow: 0 0 3px #fff, 0 0 7px #fff, 0 1px 2px #fff; }
+@media (min-aspect-ratio: 6/5) {
+  .hud { top: max(2.45%, env(safe-area-inset-top)); left: 1.6%; }
+  .brand h1 { transform: scaleX(1.2); transform-origin: left center; }
+  .turn-pill { width: max-content; min-width: 15.3cqw; height: 9cqh; left: 49.6%; bottom: 2.25%; gap: 10px; }
+  .toolbar { width: 30.5cqw; right: 1.4%; bottom: 2.2%; justify-content: space-between; gap: 0; }
+  .round-tool { width: 8.4cqw; height: 12.3cqh; }
+  .round-tool:nth-child(2) { width: 10cqw; }
+  .round-tool:nth-child(3) { width: 8.7cqw; }
+  .round-tool img { width: 3.7cqw; height: 3.7cqw; max-width: 44px; max-height: 44px; }
+}
+@media (max-width: 700px) and (orientation: portrait) {
+  .turn-pill { width: max-content; min-width: 41cqw; max-width: 90cqw; gap: 10px; padding-inline: 7px 14px; }
+  #turn-title { font-size: clamp(17px, 4.55cqw, 21px); }
+  #message { font-size: 11px; }
+}

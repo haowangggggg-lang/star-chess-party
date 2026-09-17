@@ -1,0 +1,261 @@
+{
+  "version": 2,
+  "createdAt": "2026-09-17",
+  "generator": "Built-in image_gen.imagegen, one image per call",
+  "scope": "Independent environment backgrounds only; no frontend/game logic changes.",
+  "approvedReference": "design/approved-cloud-party.png",
+  "postprocessing": "Environment PNG originals copied unchanged; environment WebP encoded from RGB at quality90/method6. Castle PNG copied unchanged; castle WebP encoded from RGBA at quality92/method6 with alpha preserved exactly. No crop, stretch, compositing or repainting.",
+  "coordinateSystem": "Normalized whole-image coordinates; origin top-left; order top-left, top-right, bottom-right, bottom-left.",
+  "measurementMethod": "Opened original and exported files with view_image. Straight left/right stone edges fitted to beige color-transition samples; top/bottom boundaries visually inspected. Quad is intersection of extended straight edges, not rounded visible corners. Approximately +/- 10 px; use an inset when overlaying the real board.",
+  "status": "Visual asset candidate inspected. No excluded content found. Geometry approximates requested composition but is not an exact match. Rendered integration alignment still requires QA.",
+  "assets": [
+    {
+      "id": "wide-v2",
+      "files": {
+        "png": "public/art/cloud-stage-wide-v2.png",
+        "webp": "public/art/cloud-stage-wide-v2.webp"
+      },
+      "size": {
+        "width": 1659,
+        "height": 948
+      },
+      "requestedApproximateSize": {
+        "width": 1792,
+        "height": 1024
+      },
+      "outputRatio": 1.75,
+      "sourceGeneration": "exec-0cd8c278-71fc-47f7-a530-3dadaf0ed737.png",
+      "blankStonePlane": {
+        "targetNormalized": [
+          [
+            0.24,
+            0.1266
+          ],
+          [
+            0.746,
+            0.1266
+          ],
+          [
+            0.803,
+            0.8565
+          ],
+          [
+            0.1849,
+            0.8565
+          ]
+        ],
+        "measuredPixels": [
+          [
+            417,
+            120
+          ],
+          [
+            1231,
+            120
+          ],
+          [
+            1347,
+            812
+          ],
+          [
+            305,
+            812
+          ]
+        ],
+        "measuredNormalized": [
+          [
+            0.2514,
+            0.1266
+          ],
+          [
+            0.742,
+            0.1266
+          ],
+          [
+            0.8119,
+            0.8565
+          ],
+          [
+            0.1838,
+            0.8565
+          ]
+        ],
+        "maximumCoordinateDeviation": 0.0114,
+        "targetRearFrontWidthRatio": 0.8186,
+        "measuredRearFrontWidthRatio": 0.781190019193858,
+        "notes": "One final widening pass performed. Measured rear/front width ratio improved from 0.680 to 0.781; it did not reach the requested 0.82 exactly. Top/bottom edge heights stayed fixed. Top-left remains approximately 19px right of target and bottom-right approximately 15px right; other scenery visually preserved. Match actual quad for integration; no further generation planned."
+      },
+      "sha256": {
+        "png": "c6fa19e4354237fb6e91a2d704f6754c79776a430699327749d797b008ca852e",
+        "webp": "7665604c986f762b962b792835232e28d332011fe6622bb1677dd6d25d9f7319"
+      },
+      "focalPointNormalized": [
+        0.4973,
+        0.4915
+      ],
+      "referenceRoles": [
+        "Approved top-left desktop panel for composition/style",
+        "Previous wide asset for art identity"
+      ],
+      "generationPrompts": [
+        "Create ONE clean desktop landscape environment asset, 1792 x 1024 pixels (approximately 1.74:1), for a polished whimsical 3D children's chess game. This is a background environment, NOT a UI mockup and NOT a screenshot.\n\nREFERENCE ROLES:\nImage 1 (approved-cloud-party.png) is the approved composition and rendering-style reference. Use ONLY its large top-left desktop panel as the visual direction. Ignore the phone panel and all lower detail panels.\nImage 2 (cloud-stage-wide.webp) is the existing environment to improve, preserving the same cheerful blue sky, creamy soft clouds, rounded grey floating rocks, mossy light-green turf, tiny pink and white flowers, glossy rounded foliage, gentle warm sunlight and high-quality toy-like 3D rendering.\n\nMAIN CHANGE: match the approved desktop island and board perspective much more closely. Show one large main floating island occupying the center and bottom of the image. In its middle is ONE completely EMPTY pale warm ivory/beige stone platform, a single smooth unbroken quadrilateral seen from above. This blank planar platform is the future place for a real interactive chessboard. Its exact target corners, in normalized whole-image coordinates (origin top-left), are TOP LEFT (0.25,0.12), TOP RIGHT (0.72,0.12), BOTTOM RIGHT (0.78,0.84), BOTTOM LEFT (0.20,0.84). Equivalently at 1792x1024: (448,123), (1290,123), (1398,860), (358,860). The top and bottom edges must be horizontal; vertical side edges widen slightly toward the bottom. Make this platform very tall and prominent, nearly three quarters of the image height. Do not compress it into a shallow horizontal trapezoid. Camera is a steep overhead three-quarter view like the approved reference.\n\nThe platform must be plain smooth beige stone with only subtle stone texture and tiny wear along its OUTER border, never large cracks or patchwork. Surround it with a narrow soft stone rim, short grass, flowers and small rocks. The main island should have generous green shoulders visible to the left and right of the platform for characters to be added separately; those shoulders are currently EMPTY. Left shoulder centered near (0.13,0.48), right shoulder near (0.88,0.55). A small amount of hanging rocky cliff is visible below the platform. Distant small floating islands and clouds stay in the outside margins and sky; do not let tall foreground foliage cover the platform.\n\nABSOLUTE EXCLUSIONS: no chessboard grid, no squares, no tiles, no chess pieces, no numbers, no letters, no coordinate markings, no title, no text, no buttons, no panels, no icons, no interface, no characters, no animals, no mascots, no wooden signs, no bubbles, no border around the whole image. Do not reproduce the reference collage. Edge-to-edge landscape environment only. Preserve the specified platform geometry and the approved art direction.",
+        "Precise environment geometry edit of this landscape image. Preserve the art style, sky, distant islands, flowers, grass and the same main island identity. This remains a clean background only with no UI or chess elements.\n\nThe beige stone platform is currently too short in image height, its bottom edge sits near y=0.79. Extend its flat top surface DOWNWARD so the FRONT BOTTOM EDGE is at normalized y=0.84, and widen its rear top edge slightly. The target blank platform four corners must be: top-left(0.25,0.12), top-right(0.72,0.12), bottom-right(0.78,0.84), bottom-left(0.20,0.84). All coordinates are relative to the entire image canvas. Make the stone plane corner-to-corner quadrilateral follow these coordinates very closely. Keep both top and bottom edges horizontal. Move the grass/cliff at the lower front correspondingly DOWN to make room, leaving only a small strip below the platform (the cliff may run off the bottom canvas). Keep the camera steep overhead. The plane must NOT look shallow or squat. Large smooth empty stone surface. Do not add an inset inner rectangle/rim line; this stone plane is one blank continuous beige surface, with a very thin rounded outer bevel. Keep generous empty grass shoulders on left and right.\n\nStrictly no chess grid, no chess squares or tiles, no figures or pieces, no coordinates or lettering, no text, no UI/buttons/icons, no characters/mascots, no wooden signs. Canvas wide landscape ratio 1.75:1, desired 1792x1024.",
+        "PRECISE SINGLE CHANGE to this exact 1660 x 948 landscape environment image: WIDEN THE BACK EDGE of the blank beige stone platform so the perspective becomes MUCH LESS TAPERED.\n\nDo NOT change the stone platform's front edge. It must remain from pixel (307,812) to (1333,812). Do NOT change the back edge HEIGHT; it must remain at y=120. Do NOT change the image canvas, overall framing, camera center, island placement, sky, clouds, background islands, flowers, grass, lighting, material or texture.\n\nOnly move the two REAR UPPER platform corners OUTWARDS:\n- The OLD upper-left corner is about (458,120). Move it LEFT to (398,120).\n- The OLD upper-right corner is about (1156,120). Move it RIGHT to (1238,120).\n- The lower-left corner stays at (307,812).\n- The lower-right corner stays at (1333,812).\nNormalized target corners are TL(.2400,.1266), TR(.7460,.1266), BR(.8030,.8565), BL(.1849,.8565).\n\nConsequently the top edge must be 840 pixels wide while the bottom edge stays 1026 pixels wide: top/bottom width ratio 0.82. The left and right sides are now more nearly vertical, with only gentle perspective taper. The upper blank stone surface extends sideways over the immediately adjacent narrow strips of turf; adjust only the tiny neighboring grass/flowers that directly conflict with the newly expanded surface. The top edge must stay horizontal and at the SAME y. Bottom edge exactly unchanged. All original scenery outside this small geometry change should stay visually identical. The stone still is a perfectly blank unbroken flat pale beige quadrilateral with softly rounded corners and thin bevel.\n\nNO chess grid, no squares, no tiles, no chessmen, no characters, no labels, no text, no coordinate markings, no UI, no buttons, no signs. This is an environment only. Do not create new imagery or change the background. Prioritize the precise widened upper corners and fixed front edge."
+      ],
+      "previousSourceGeneration": "exec-b6c945f3-3d13-47e5-9a81-5bdbfaedb57a.png"
+    },
+    {
+      "id": "tall-v2",
+      "files": {
+        "png": "public/art/cloud-stage-tall-v2.png",
+        "webp": "public/art/cloud-stage-tall-v2.webp"
+      },
+      "size": {
+        "width": 830,
+        "height": 1894
+      },
+      "requestedApproximateSize": {
+        "width": 1024,
+        "height": 2336
+      },
+      "outputRatio": 0.4382259767687434,
+      "sourceGeneration": "exec-c3f6b650-cfd3-4cd4-85c0-ffaf53e2a756.png",
+      "blankStonePlane": {
+        "targetNormalized": [
+          [
+            0.08,
+            0.29
+          ],
+          [
+            0.91,
+            0.29
+          ],
+          [
+            0.98,
+            0.7
+          ],
+          [
+            0.01,
+            0.7
+          ]
+        ],
+        "measuredPixels": [
+          [
+            90,
+            524
+          ],
+          [
+            727,
+            524
+          ],
+          [
+            822,
+            1298
+          ],
+          [
+            9,
+            1298
+          ]
+        ],
+        "measuredNormalized": [
+          [
+            0.1084,
+            0.2767
+          ],
+          [
+            0.8759,
+            0.2767
+          ],
+          [
+            0.9904,
+            0.6853
+          ],
+          [
+            0.0108,
+            0.6853
+          ]
+        ],
+        "maximumCoordinateDeviation": 0.0341,
+        "notes": "Rear edge is about 6.25% of image width narrower overall than requested; plane about 1.4% of image height higher. Castle centered above; retain complete 0.438 portrait ratio rather than horizontally cropping."
+      },
+      "sha256": {
+        "png": "819fa9c370de69e20ad0887ef5179690f5433c00e6a33bd7c5a06a6295651a45",
+        "webp": "8c1d77e533db3c2605a88440d854d22429bbbcc026f1ad0efb7c0ced4388284d"
+      },
+      "focalPointNormalized": [
+        0.496,
+        0.481
+      ],
+      "referenceRoles": [
+        "Approved far-right mobile panel for composition/style",
+        "Previous tall asset for art identity, not framing",
+        "New desktop v2 environment for matching material"
+      ],
+      "generationPrompts": [
+        "Create ONE clean EXTRA-TALL PORTRAIT mobile environment asset, desired size 1024 x 2336 pixels, exact aspect ratio approximately 0.438:1 (9:20.5). This must be a true tall phone composition with extended sky and clouds, NOT a crop of a landscape image and NOT a 2:3 portrait. It is a background environment for a premium whimsical 3D children's chess game, not a screenshot, UI mockup or collage.\n\nREFERENCE ROLES:\nImage 1 approved-cloud-party.png: Use ONLY its FAR-RIGHT MOBILE PANEL for the composition and toy-like 3D style. Ignore all other panels and ignore every interface element and character.\nImage 2 cloud-stage-tall.webp: source material/style for the floating island, blue sky, clouds, plants and stone. Its existing shorter 2:3 framing is NOT the new framing; recompose for the requested extra-tall 9:20.5 phone canvas.\nImage 3 the new desktop environment: exact desired soft stone, grass, flowers and clean blank stage treatment.\n\nSTRUCTURE FROM TOP TO BOTTOM, proportions relative to ENTIRE tall phone canvas:\n- y=0.00 to 0.18: open saturated light-blue sky and soft puffy white clouds; a few small distant floating islands at margins. Plenty of calm space, no UI.\n- y=0.15 to 0.29: a SMALL distant rounded grassy floating island with a tiny ivory fairytale castle with golden roofs, centered horizontally at x=0.50, like the approved phone reference. Its rocky base and flowers visually meet the back of the large main island. Keep open left and right grassy perches at x~0.13 and 0.87, y~0.25 where separate characters will later be placed, but these perches currently have NO characters.\n- y=0.29 to 0.70: the main feature is one HUGE perfectly EMPTY warm ivory/beige stone platform. Its target four corners normalized to the full canvas are TOP LEFT(0.08,0.29), TOP RIGHT(0.91,0.29), BOTTOM RIGHT(0.98,0.70), BOTTOM LEFT(0.01,0.70). Equivalently at1024x2336, the corners are (82,677),(932,677),(1004,1635),(10,1635). Top and bottom edges are horizontal, side edges slightly widen downward. This plane nearly fills the width and spans 41% of the tall image height. Do NOT shrink the plane or leave wide side margins. Do NOT create a shallow horizontal trapezoid. Steep overhead three-quarter camera, so the platform is approximately square in visible pixel proportions. Smooth uninterrupted pale beige stone, no inset frame or inner line; only a thin rounded outer bevel.\n- Just outside the platform: narrow border of short moss-green grass, tiny white and pink flowers, round rocks and succulent-like foliage, matching the approved soft 3D art. Avoid large plants obstructing the platform.\n- y=0.70 to 0.87: main island lower green lip and rounded grey hanging rocky cliff. The entire main island stays centered horizontally.\n- y=0.87 to1.00: clouds, blue sky gap, distant lower corner fragments of floating islands; calm breathing room for future UI, currently NO interface.\n\nLighting: charming polished toy-like 3D render, soft sunlight from upper left, creamy highlights, bright clear daytime, matching reference colors and detailed handmade small flowers. The sky, rock and grass have depth; the large center stone slab is a FLAT planar empty stage.\n\nSTRICTLY EXCLUDE: chess grid or squares, tiles, chessmen or any objects on the stone plane, numbers, letters, coordinates, title, text, logos, buttons, icons, panels, menus, badges, clouds with faces, animals, penguin, bunny, robot, mascots, people, wooden signs, decorative UI, outer device frame. No collage. Edge-to-edge EXTRA TALL phone background. The exact large blank stone quadrilateral and true tall aspect ratio are the critical requirements.",
+        "Make a PRECISE GEOMETRY CORRECTION to this same 830 x 1894 extra-tall portrait environment. Do not change its portrait canvas or overall 3D art direction.\n\nThe blank ivory stone platform in this input is TOO SHORT, running approximately from pixel y=605 to1178. Enlarge its height VERY SIGNIFICANTLY: move its REAR TOP EDGE UP to pixel y=549 and its FRONT BOTTOM EDGE DOWN to pixel y=1326. The EMPTY STONE plane must become 777 pixels tall, almost as tall as its visible width. The four exact target corners in this 830x1894 image are:\nTOP LEFT (66,549);\nTOP RIGHT (755,549);\nBOTTOM RIGHT (813,1326);\nBOTTOM LEFT (8,1326).\nThese are normalized (0.08,0.29),(0.91,0.29),(0.98,0.70),(0.01,0.70).\nThe stone must follow that LARGE TALL quadrilateral. Top and bottom horizontal. Camera is steeper overhead to show this tall nearly square surface; do not retain the current shallow trapezoid. Plain smooth uninterrupted beige stone with subtle texture and a thin rounded edge only. No inner frame line.\n\nMove the surrounding main island accordingly: rear grass strip y~510, left/right grass hugging the stone and partly outside the frame, grass lip underneath y~1350. Compress and lower the hanging rock cliff to occupy y~1350 to1690 instead of the current excessive cliff height; its point must end near y=1690. Lower clouds fill the rest. The little central distant castle can shift up a little (gold top near y=280, floating rock base ending near y=515) to stay above the rear stone edge. Keep the cheerful blue sky and soft clouds. Keep the two upper-side grass areas clear for future separately placed characters.\n\nDo not simply move the island downward; expand the actual stone surface height at both ends to the coordinates specified. Do not leave a large grassy gap between top of stone and castle. Preserve high-quality flowers, green moss, round rocks, soft toy 3D style, warm sunlight. No UI, no letters or text, no characters, no grid, no squares, no board markings, no chessmen, no objects on the plane, no wooden sign. This remains a clean game environment asset only."
+      ],
+      "notAdoptedAttempts": [
+        {
+          "generationBasename": "exec-1c45ab4b-a11d-4c1e-885c-1321b846c860.png",
+          "purpose": "Enlarge central castle island and soften sky while preserving foreground geometry.",
+          "status": "Not adopted; current PNG and WebP retained unchanged.",
+          "reason": "Castle tip moved to about y=0.112 instead of requested y=0.145, potentially colliding with the UI above. Main island was repainted, so exact foreground boundary pixel preservation cannot be certified. Stone side color-transition samples differed by up to 5px, which may include texture/color threshold variation.",
+          "attempts": 1,
+          "prompt": "Make ONE localized edit to IMAGE 1, the 830 x 1894 tall mobile environment. IMAGE 2 is a style/color reference ONLY: use its far-right PHONE panel's softer sky and larger central castle-island as the guide. Do not copy UI, characters or chess content from image 2.\n\nONLY TWO CHANGES:\n1. Enlarge the SMALL DISTANT CENTRAL CASTLE FLOATING ISLAND above the main stone platform. Currently the castle island occupies about x=302..540 (36%..65% of image width), with its gold castle tip near y=275 and bottom near y=480. Enlarge the island sideways to span approximately x=207..606 (25%..73% of image width), about 1.5 to 1.65 times its current width. Keep the CASTLE TIP at y=275 (14.5% of canvas height). The expanded floating rock base should end around y=530 (28% of height), partly BEHIND the existing foreground grass strip. Enlarge the ivory castle and golden towers proportionally enough to be more legible, with a broad grassy rock base, matching the approved mobile reference. Do not enlarge it upward; keep its top at exactly the current height. Keep horizontal center near x=410. Its surrounding tiny distant islands may remain where they are.\n2. Gently soften the saturated blue sky to the paler, slightly hazier blue in the approved reference. This is a subtle change only: reduce blue saturation modestly and lift luminance slightly, retaining blue sky, white fluffy clouds, depth and warmth. Do not wash out the entire scene or recolor the stone, grass or rocks.\n\nHARD LOCK — DO NOT CHANGE:\nThe entire large FOREGROUND MAIN ISLAND, its beige stone platform, its grass rim, flowers, rocks, bottom cliff, every border/silhouette and pixel position must remain unchanged from IMAGE 1. All of the main island begins around y=445 and extends to y=1710. Only the enlarged distant castle island can extend BEHIND the existing foreground; do NOT move, redraw, resize, warp, recolor or relight the main island or stone. In particular, the blank stone platform must keep its exact existing quadrilateral: approximately TL(90,524), TR(727,524), BR(822,1298), BL(9,1298). Preserve its existing rounded corners, bevel, texture and edge pixels. Preserve the full portrait canvas at 830x1894, without cropping or resizing. Keep every foreground rock/flower/grass object in its current pixel location. Treat the foreground as a locked layer.\n\nThis remains an independent empty environment asset: absolutely no chessboard grid, squares, pieces, coordinates, letters, text, characters, mascots, penguins, bunnies, robots, signs, buttons, icons, interface, or frame. Do not recreate the reference collage. Output only the same tall environment with the enlarged central distant castle island and gently softer sky."
+        }
+      ]
+    },
+    {
+      "id": "castle-island",
+      "files": {
+        "png": "public/art/castle-island.png",
+        "webp": "public/art/castle-island.webp"
+      },
+      "size": {
+        "width": 1536,
+        "height": 1024
+      },
+      "sourceGeneration": "exec-c0e47ad8-9519-4ac9-8fe2-5c7a5088c1e0.png",
+      "purpose": "Independent transparent central castle-and-floating-island overlay for phone composition; existing tall background not altered.",
+      "placementTargetVisibleBoundsNormalized": {
+        "left": 0.24,
+        "right": 0.72,
+        "top": 0.145,
+        "bottom": 0.284
+      },
+      "alpha": {
+        "mode": "RGBA",
+        "range": [
+          0,
+          254
+        ],
+        "fullyTransparentFraction": 0.5551630655924479,
+        "effectiveSubjectThreshold": 10,
+        "effectiveSubjectBoundsPixels": [
+          117,
+          50,
+          1419,
+          990
+        ],
+        "effectiveSubjectBoundsNormalized": [
+          0.076172,
+          0.048828,
+          0.923828,
+          0.966797
+        ],
+        "effectiveSubjectAspectRatio": 1.3851063829787233,
+        "notes": "Real alpha verified; corners alpha=0. Outer RGB contains colors that are invisible under alpha. Very faint alpha=1 residues are outside the effective silhouette. Subject pixels are mostly alpha252-254.",
+        "webpAlphaMatchesPngExactly": true
+      },
+      "visualQA": "Opened generated PNG. Isolated ivory/gold castle, foliage, flowers and broad rounded rock base; no sky/clouds/board/characters/UI. Subject ratio1.385 rather than requested approximately1.5; layout must account for alpha padding. Original output resolution retained without cropping or stretching.",
+      "generationPrompts": [
+        "Create ONE isolated 3D game asset on a TRUE TRANSPARENT BACKGROUND (real PNG alpha channel), inspired by ONLY the central castle floating island in the FAR-RIGHT PHONE panel of the supplied approved design.\n\nSUBJECT ONLY: a small charming ivory fairytale castle with warm gold conical tower roofs, sitting on a broad grassy floating island. The castle is compact and squat, with one central taller turret and a few little side turrets, small warm stone arch doorway, tiny arched windows. The island includes soft light green mossy grass, miniature white/pink flowers, a few rounded leafy plants, and soft rounded grey-lavender rock chunks beneath. Match the polished soft toy-like 3D rendering, creamy materials, gentle upper-left sunlight and whimsical children's game style in the approved reference. Three-quarter slightly overhead camera, front of castle visible.\n\nCRITICAL COMPOSITION: the ENTIRE visible subject including the castle tip and the bottom rock silhouette must have WIDTH:HEIGHT approximately 1.5:1 (for example a subject 660 pixels wide and 440 pixels tall on a 768x640 transparent canvas). Make the ROCK BASE LOW AND WIDE, like a broad shallow bowl made of rounded boulders. Do NOT make a long pointed hanging island or tall dangling stalactite. The castle itself should occupy the top central 55% of the subject width. The shallow rock base is only about the bottom one-quarter of the whole subject height. Keep the castle reasonably short and broad so the complete silhouette is clearly wider than tall. Center the full isolated island, tightly but completely framed, no parts clipped. Minimal transparent padding of roughly 5% at left/right and enough even padding above/below. Desired canvas approximately 768x640, high quality.\n\nThis asset will be composited over an existing sky background. Therefore EVERYTHING OUTSIDE the castle, grass, flowers, foliage and ROCK silhouette MUST BE TRANSPARENT. No sky, clouds, cloud wisps, mist, horizon, ground plane, drop shadow outside the silhouette, white matte, colored background or fake checkerboard. Do not include the rest of the design reference. Strictly no chessboard, stone chess platform, chess pieces, grid, letters, numbers, text, signs, logo, interface, buttons, panels, people, penguin, bunny, robot or other mascots. Output a clean cutout asset as RGBA PNG with actual alpha, not a white-background render."
+      ],
+      "sha256": {
+        "png": "88ad0f3c03889533ae1baaad7fa6d1c375d70d3e11af3cbf1a872457e34823a4",
+        "webp": "1a2c95ce26decc8f3cbce2da320a7fe15ea0b9568e9898f98aa98210344d5cbe"
+      }
+    }
+  ]
+}

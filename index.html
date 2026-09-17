@@ -12,14 +12,16 @@
   <body>
     <main id="game-shell" class="game-shell">
       <picture class="scene-background" aria-hidden="true">
-        <source media="(max-aspect-ratio: 6/5)" srcset="/art/cloud-stage-tall.webp" />
-        <img src="/art/cloud-stage-wide.webp" alt="" fetchpriority="high" decoding="async" />
+        <source media="(min-width: 701px) and (max-aspect-ratio: 6/5)" srcset="/art/cloud-stage-tall.webp" />
+        <source media="(max-aspect-ratio: 6/5)" srcset="/art/cloud-stage-tall-v2.webp" />
+        <img src="/art/cloud-stage-wide-v2.webp" alt="" fetchpriority="high" decoding="async" />
       </picture>
+      <div class="castle-island" aria-hidden="true"><img src="/art/castle-island.webp" alt="" decoding="async" /></div>
 
       <header class="hud">
         <div class="brand">
           <h1>星棋派对<img class="brand-star" src="/icons/star.svg" alt="" /></h1>
-          <p>一起商量，团团落子</p>
+          <p>一起商量，团团落子<img class="brand-heart" src="/icons/heart.svg" alt="" /></p>
         </div>
         <button id="settings-open" class="icon-button settings-open" type="button" aria-label="打开小岛设置" aria-haspopup="dialog">
           <img src="/icons/gear-six.svg" alt="" />
@@ -66,7 +68,7 @@
 
       <footer class="play-controls">
         <div class="turn-pill">
-          <img id="turn-avatar" src="/art/penguin.webp" alt="" />
+          <span class="turn-avatar-crop"><img id="turn-avatar" src="/art/penguin.webp" alt="" /></span>
           <p id="turn-title">轮到团团</p>
         </div>
         <p id="message" role="status" aria-live="polite" aria-atomic="true">选一枚棋子，一起想想下一步。</p>
@@ -80,7 +82,7 @@
             <span>给个建议</span>
           </button>
           <button id="view" class="round-tool" type="button" aria-label="切换棋盘视角">
-            <img src="/icons/camera-rotate.svg" alt="" />
+            <img src="/icons/camera.svg" alt="" />
             <span>视角</span>
           </button>
         </div>

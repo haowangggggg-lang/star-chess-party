@@ -8,7 +8,7 @@ const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const output = join(root, 'build');
 const legal = join(output, 'legal');
 const digest = value => createHash('sha256').update(value).digest('hex');
-const runtimeExtensions = new Set(['.html', '.css', '.js', '.mjs', '.wasm', '.glb', '.webp', '.svg']);
+const runtimeExtensions = new Set(['.html', '.css', '.js', '.mjs', '.wasm', '.glb', '.webp', '.svg', '.ttf']);
 
 async function listFiles(directory) {
   const entries = await readdir(directory, { withFileTypes: true });
@@ -42,6 +42,8 @@ const sourceOnlyArt = [
   'cloud-bot.png', 'cloud-stage-tall.png', 'cloud-stage-wide.png',
   'penguin.png', 'rabbit.png', 'team-sign.png', 'victory-crown.png',
   'background-manifest.json', 'character-manifest.json', 'props-manifest.json',
+  'cloud-stage-wide-v2.png', 'cloud-stage-tall-v2.png', 'castle-island.png',
+  'cloud-stage-wide.webp',
 ];
 await Promise.all(sourceOnlyArt.map(name => rm(join(output, 'art', name), { force: true })));
 
@@ -61,6 +63,7 @@ await writeFile(join(legal, 'index.html'), `<!doctype html>
 <li><a href="stockfish/${archiveName}">Stockfish.js 对应源码归档</a>，提交 <code>${stockfish.source.commit}</code>。</li>
 <li><a href="stockfish/${networkName}">Stockfish Lite 的 NNUE 构建输入</a></li>
 <li><a href="stockfish/README.md">Stockfish 来源、构建方法与验证边界</a> · <a href="stockfish/manifest.json">校验值</a> · <a href="stockfish/Copying.txt">许可证</a> · <a href="stockfish/AUTHORS">作者</a></li>
+<li><a href="fonts/ZCOOL-KuaiLe-OFL.txt">ZCOOL KuaiLe 标题字体 OFL 许可</a></li>
 <li><a href="THREE-MIT.txt">Three.js MIT 许可</a> · <a href="CHESS-JS-BSD-2.txt">chess.js BSD-2-Clause 许可</a> · <a href="PHOSPHOR-MIT.txt">Phosphor 图标 MIT 许可</a></li>
 </ul>
 <p>美术原图与资产记录随应用源码包保留。本页和源码下载不加入游戏离线缓存，需要联网读取。</p>

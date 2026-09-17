@@ -23,16 +23,6 @@
       "slot": "cloud-stage-tall"
     },
     {
-      "file": "public/art/cloud-stage-wide.webp",
-      "dimensions": [
-        1920,
-        1200
-      ],
-      "alpha": false,
-      "source": "public/art/cloud-stage-wide.png",
-      "slot": "cloud-stage-wide"
-    },
-    {
       "file": "public/art/penguin.webp",
       "dimensions": [
         1254,
@@ -71,21 +61,54 @@
       "alpha": true,
       "source": "public/art/victory-crown.png",
       "slot": "victory-crown"
+    },
+    {
+      "file": "public/art/cloud-stage-wide-v2.webp",
+      "dimensions": [
+        1659,
+        948
+      ],
+      "alpha": false,
+      "source": "public/art/cloud-stage-wide-v2.png",
+      "slot": "desktop environment",
+      "preparationRecord": "design/environment-v2.json"
+    },
+    {
+      "file": "public/art/cloud-stage-tall-v2.webp",
+      "dimensions": [
+        830,
+        1894
+      ],
+      "alpha": false,
+      "source": "public/art/cloud-stage-tall-v2.png",
+      "slot": "phone environment",
+      "preparationRecord": "design/environment-v2.json"
+    },
+    {
+      "file": "public/art/castle-island.webp",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "alpha": true,
+      "source": "public/art/castle-island.png",
+      "slot": "phone central distant castle",
+      "preparationRecord": "design/environment-v2.json"
     }
   ],
   "models": {
     "units": "one square = 1 unit",
-    "camera": "Perspective: desktop 50 degrees, phone 58 degrees, top view 86 degrees",
+    "camera": "Calibrated oblique perspective, elevation capped at 48 degrees with vertical projection correction; top view height-fit.",
     "files": [
       {
         "file": "models/pawn.glb",
         "slot": "pawn: 8x8 board, ivory/navy material variant",
-        "bytes": 49984,
-        "triangles": 2016,
+        "bytes": 103592,
+        "triangles": 4368,
         "bounds": [
-          0.531449019908905,
-          0.8839490915415809,
-          0.531449019908905
+          0.5429527759552002,
+          0.7200000286102295,
+          0.5429527759552002
         ],
         "source": "scripts/build-models.mjs",
         "visualTarget": "design/approved-cloud-party.png"
@@ -93,12 +116,12 @@
       {
         "file": "models/rook.glb",
         "slot": "rook: 8x8 board, ivory/navy material variant",
-        "bytes": 96016,
-        "triangles": 3624,
+        "bytes": 152816,
+        "triangles": 6192,
         "bounds": [
-          0.6402999758720398,
-          1.0569490100024268,
-          0.6402999758720398
+          0.6541600227355957,
+          0.8999999761581421,
+          0.6541600227355957
         ],
         "source": "scripts/build-models.mjs",
         "visualTarget": "design/approved-cloud-party.png"
@@ -106,12 +129,12 @@
       {
         "file": "models/knight.glb",
         "slot": "knight: 8x8 board, ivory/navy material variant",
-        "bytes": 156332,
-        "triangles": 3804,
+        "bytes": 255584,
+        "triangles": 10656,
         "bounds": [
-          0.8111211061477661,
-          1.4589736367342994,
-          0.6402999758720398
+          0.6827766299247742,
+          1.0341264009475708,
+          0.6541600227355957
         ],
         "source": "scripts/build-models.mjs",
         "visualTarget": "design/approved-cloud-party.png"
@@ -119,12 +142,12 @@
       {
         "file": "models/bishop.glb",
         "slot": "bishop: 8x8 board, ivory/navy material variant",
-        "bytes": 95348,
-        "triangles": 2732,
+        "bytes": 180344,
+        "triangles": 7536,
         "bounds": [
-          0.6402999758720398,
-          1.3369491006014869,
-          0.6402999758720398
+          0.6541600227355957,
+          1.0499999523162842,
+          0.6541600227355957
         ],
         "source": "scripts/build-models.mjs",
         "visualTarget": "design/approved-cloud-party.png"
@@ -132,12 +155,12 @@
       {
         "file": "models/queen.glb",
         "slot": "queen: 8x8 board, ivory/navy material variant",
-        "bytes": 133220,
-        "triangles": 5040,
+        "bytes": 282064,
+        "triangles": 11312,
         "bounds": [
-          0.6402999758720398,
-          1.330949058639817,
-          0.6402999758720398
+          0.6541600227355957,
+          1.1100000143051147,
+          0.6541600227355957
         ],
         "source": "scripts/build-models.mjs",
         "visualTarget": "design/approved-cloud-party.png"
@@ -145,12 +168,12 @@
       {
         "file": "models/king.glb",
         "slot": "king: 8x8 board, ivory/navy material variant",
-        "bytes": 91920,
-        "triangles": 3672,
+        "bytes": 152732,
+        "triangles": 6360,
         "bounds": [
-          0.6402999758720398,
-          1.4269490147707984,
-          0.6402999758720398
+          0.6541600227355957,
+          1.159999966621399,
+          0.6541600227355957
         ],
         "source": "scripts/build-models.mjs",
         "visualTarget": "design/approved-cloud-party.png"
@@ -158,12 +181,12 @@
       {
         "file": "models/board.glb",
         "slot": "Main interactive board. x = file - 3.5; z = 3.5 - rank. Top surface y=0.",
-        "bytes": 73092,
-        "triangles": 1356,
+        "bytes": 783260,
+        "triangles": 27852,
         "bounds": [
-          9.050000190734863,
-          0.3129999921657145,
-          9.050000190734863
+          8.09000015258789,
+          0.09799999681115151,
+          8.09000015258789
         ],
         "source": "scripts/build-models.mjs",
         "visualTarget": "design/approved-cloud-party.png"
@@ -173,6 +196,15 @@
   "filesOpened": true,
   "imageSubjectsInspected": true,
   "gltfParseAndBoundsChecked": true,
-  "inSceneRenderingQA": "Passed playable visual direction review; see design-qa.md for residual polish and device limits",
-  "artUsage": "Environment and character raster layers; live board and chess pieces are real GLB geometry. No complete comp embedded in runtime."
+  "inSceneRenderingQA": "Passed scoped screenshot review: desktop/phone v9, tablet/short-phone v11, real checkmate result v6. No reviewed P0/P1/P2 remain; realtime model highlight/detail differences remain P3. See design-qa.md.",
+  "artUsage": "Environment and character raster layers; live board and chess pieces are real GLB geometry. No complete comp embedded in runtime.",
+  "revision": "2026-09-17 visual alignment",
+  "fonts": [
+    {
+      "file": "public/fonts/cloud-party-title.ttf",
+      "family": "ZCOOL KuaiLe",
+      "license": "licenses/fonts/ZCOOL-KuaiLe-OFL.txt",
+      "usage": "Title, subtitle and short game controls"
+    }
+  ]
 }
