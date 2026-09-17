@@ -1,6 +1,8 @@
 import * as T from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { configureBoardCamera } from './board-plane.mjs';
+import { STONE_HALF_EXTENT, stoneSurfaceInStage } from './stone-surface.mjs';
 
 const TYPES={p:'pawn',r:'rook',n:'knight',b:'bishop',q:'queen',k:'king'};
 const NAMES={p:'兵',r:'车',n:'马',b:'象',q:'后',k:'王'};
@@ -51,10 +53,23 @@ export class GameBoard {
       button.addEventListener('keydown',event=>{const d={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,-1],ArrowDown:[0,1]}[event.key];if(!d)return;event.preventDefault();const a=x+d[0],b=z+d[1];if(a>=0&&a<8&&b>=0&&b<8){for(const el of this.buttons.values())el.tabIndex=-1;const next=this.buttons.get(square(a,b));next.tabIndex=0;next.focus();}});
       this.grid.append(button);this.buttons.set(sq,button);
     }
-    this.canvas.addEventListener('click',event=>{const sq=this.pieceAt(event.clientX,event.clientY);if(sq)this.onSquare(sq);});
+    this.canvas.addEventListener('click',event=>{
+      const sq=this.pieceAt(event.clientX,event.clientY);
+      if(sq){this.onSquare(sq);return;}
+      // Scenery sits behind the chessmen. Transparent canvas pixels must not
+      // turn its existing character button into a dead area; mesh hits still
+      // win, and squares continue to use the unchanged accessible grid above.
+      const control=[...stage.closest('.game-shell').querySelectorAll('[data-scene-control]')].find(el=>{
+        const r=el.getBoundingClientRect();return !el.disabled&&event.clientX>=r.left&&event.clientX<=r.right&&event.clientY>=r.top&&event.clientY<=r.bottom;
+      });
+      control?.click();
+    });
     this.labels=[];
     for(let i=0;i<8;i++)for(const [text,p]of [[String.fromCharCode(97+i),new T.Vector3(i-3.5,.01,4.27)],[String(8-i),new T.Vector3(-4.27,.01,i-3.5)]]){const label=document.createElement('span');label.textContent=text;label.className='board-coordinate';this.coordinates.append(label);this.labels.push({label,p});}
     this.canvas.addEventListener('webglcontextlost',event=>{event.preventDefault();this.onError(new Error('画面暂时休息了，棋局已保留。重新打开即可继续。'));});
+    this.background=stage.closest('.game-shell').querySelector('.scene-background img');
+    this.onBackgroundLoad=()=>this.resize();
+    this.background.addEventListener('load',this.onBackgroundLoad);
     this.observer=new ResizeObserver(()=>this.resize());this.observer.observe(stage);
     this.revision=0;this.ready=this.load();
   }
@@ -115,45 +130,15 @@ export class GameBoard {
   setView(topView) {this.topView=topView;this.resize();}
   resize() {
     const width=this.stage.clientWidth,height=this.stage.clientHeight;if(!width||!height)return;
-    this.width=width;this.height=height;this.renderer.setSize(width,height,false);this.camera.aspect=width/height;this.camera.updateProjectionMatrix();
-    // Calibrate the live plane to the approved scene. A fit-to-canvas camera
-    // creates a second, conflicting perspective over the painted stone slab.
-    const portrait=width/height<=1.2,tablet=portrait&&width>700;
-    let quad=tablet?[[.17,.31],[.826,.31],[.911,.60],[.078,.60]]
-      :portrait?[[.109,.311],[.892,.311],[.973,.660],[.028,.660]]
-      :[[.281,.160],[.689,.160],[.738,.792],[.232,.792]];
-    let points=quad.map(([x,y])=>({x:x*width,y:y*height}));
-    if(!portrait){
-      const scale=Math.max(width/1660,height/948),dx=(width-1660*scale)/2,dy=(height-948*scale)/2;
-      points=quad.map(([x,y])=>({x:x*1660*scale+dx,y:y*948*scale+dy}));
-    }
-    let topWidth=points[1].x-points[0].x,bottomWidth=points[2].x-points[3].x;
-    let boardHeight=points[3].y-points[0].y,topY=points[0].y;
-    const centerX=points.reduce((sum,p)=>sum+p.x,0)/4;
-    if(this.topView){
-      const centerY=topY+boardHeight/2;
-      bottomWidth=Math.min(bottomWidth,height*(portrait?.48:.76));
-      topWidth=bottomWidth*.978;boardHeight=(topWidth+bottomWidth)/2*.997;
-      topY=centerY-boardHeight/2;
-    }
-    // The trapezoid determines elevation, perspective strength and focal length.
-    const targetSine=Math.min(.997,2*boardHeight/(topWidth+bottomWidth));
-    // The reference uses an illustrated oblique camera: keep the near pieces
-    // readable while the projected floor retains its measured portrait shape.
-    const sine=this.topView?targetSine:Math.min(targetSine,Math.sin(48*Math.PI/180));
-    const verticalScale=targetSine/sine;
-    const cosine=Math.sqrt(1-sine*sine),ratio=(bottomWidth-topWidth)/(bottomWidth+topWidth);
-    const distance=4*cosine/Math.max(.005,ratio),focal=bottomWidth*(distance-4*cosine)/8;
-    const principalY=topY+verticalScale*focal*4*sine/(distance+4*cosine);
-    this.camera.fov=2*Math.atan(height/(2*focal))*180/Math.PI;
-    this.camera.far=Math.max(100,distance+30);
-    this.camera.position.set(0,distance*sine,distance*cosine);this.camera.lookAt(0,0,0);
-    this.camera.updateProjectionMatrix();
-    this.camera.projectionMatrix.elements[5]*=verticalScale;
-    this.camera.projectionMatrix.elements[8]=1-2*centerX/width;
-    this.camera.projectionMatrix.elements[9]=2*principalY/height-1;
-    this.camera.projectionMatrixInverse.copy(this.camera.projectionMatrix).invert();
-    this.camera.updateMatrixWorld();
+    this.width=width;this.height=height;this.renderer.setSize(width,height,false);
+    // The raster stone is the shared floor calibration. Its measured four
+    // corners, actual <picture> source and CSS crop drive both camera modes.
+    // Only the pieces' viewing elevation changes; the board never floats off
+    // the illustrated support when entering or leaving the overhead view.
+    configureBoardCamera(this.camera,{
+      width,height,stoneCorners:stoneSurfaceInStage(this.background,this.stage),
+      halfExtent:STONE_HALF_EXTENT,topView:this.topView,
+    });
     this.positionTargets();this.invalidate();
   }
   project(p){const v=p.clone().project(this.camera);return{x:(v.x+1)*this.width/2,y:(1-v.y)*this.height/2};}
@@ -182,5 +167,5 @@ export class GameBoard {
     this.frame=0;const remaining=[];for(const t of this.tweens){const v=Math.min(1,(now-t.start)/t.duration);t.update(v);if(v===1)t.resolve();else remaining.push(t);}this.tweens=remaining;
     this.renderer.render(this.scene,this.camera);if(this.tweens.length)this.invalidate();
   }
-  dispose(){this.disposed=true;cancelAnimationFrame(this.frame);this.finishAnimations();this.observer.disconnect();this.haloTexture?.dispose();this.environmentTarget?.dispose();this.renderer.dispose();}
+  dispose(){this.disposed=true;cancelAnimationFrame(this.frame);this.finishAnimations();this.observer.disconnect();this.background.removeEventListener('load',this.onBackgroundLoad);this.haloTexture?.dispose();this.environmentTarget?.dispose();this.renderer.dispose();}
 }

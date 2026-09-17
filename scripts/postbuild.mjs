@@ -32,7 +32,7 @@ execFileSync('tar', [
   '--no-xattrs',
   ...(process.platform === 'darwin' ? ['--no-mac-metadata'] : []),
   '--exclude=.DS_Store', '--exclude=._*', '-C', root,
-  'src', 'scripts', 'tests', 'public', 'licenses', '.github',
+  'src', 'scripts', 'tests', 'public', 'licenses', '.github', 'design/stone-calibration.json',
   'package.json', 'package-lock.json', 'vite.config.mjs', 'index.html', 'README.md', 'LICENSE',
 ], { stdio: 'inherit', env: { ...process.env, COPYFILE_DISABLE: '1' } });
 

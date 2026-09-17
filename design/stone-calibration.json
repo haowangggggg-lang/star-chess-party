@@ -1,0 +1,28 @@
+{
+  "units": "Source image pixels, TL/TR/BR/BL on the stone top face, excluding the front bevel",
+  "planeHalfExtent": 4.4,
+  "boardHalfExtent": 4,
+  "surfaces": {
+    "cloud-stage-wide-v2.webp": {
+      "width": 1659,
+      "height": 948,
+      "corners": [[417,120],[1231,120],[1347,812],[305,812]],
+      "source": "design/environment-v2.json: wide-v2.blankStonePlane.measuredPixels",
+      "sha256": "7665604c986f762b962b792835232e28d332011fe6622bb1677dd6d25d9f7319"
+    },
+    "cloud-stage-tall-v2.webp": {
+      "width": 830,
+      "height": 1894,
+      "corners": [[90,524],[727,524],[822,1298],[9,1298]],
+      "source": "design/environment-v2.json: tall-v2.blankStonePlane.measuredPixels",
+      "sha256": "8c1d77e533db3c2605a88440d854d22429bbbcc026f1ad0efb7c0ced4388284d"
+    },
+    "cloud-stage-tall.webp": {
+      "width": 1024,
+      "height": 1536,
+      "corners": [[151,444],[874,444],[994,931],[46,931]],
+      "source": "2026-09-17 independent source-pixel edge inspection; straight side extensions intersect top face rear y444/front y931, excluding rounded corners and the bevel; visual uncertainty about 5px",
+      "sha256": "c0431949325fb60e291e9a271b85ed9d1ff706d3556a0ab4162a510ae2c98b53"
+    }
+  }
+}
