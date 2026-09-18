@@ -1,6 +1,6 @@
 # 星棋派对 · 第二种星舰方向
 
-final result: visual QA passed; production verification pending
+final result: visual QA passed; released; live browser verification blocked
 
 验收日期：2026-09-18。团团重新选择的是原来按顺序展示的第二种「星舰双人指挥室」。该原稿同时含桌面和手机图。本次改画面，不改变国际象棋规则、电脑难度算法、残局、存档格式或已有合作流程；不部署到 ChatGPT Sites。
 
@@ -43,4 +43,10 @@ final result: visual QA passed; production verification pending
 
 ## 发布
 
-发布目标仍为自己的 GitHub Pages，正式部署和实际网址验证完成后补录。
+正式代码版本 `6e37aae5dd51245d647028fbbf985e1fe22b7445` 已推送自己的 GitHub main。GitHub Actions [35301138557](https://github.com/haowangggggg-lang/star-chess-party/actions/runs/35301138557) 发布成功。
+
+- 正式网址：`https://haowangggggg-lang.github.io/star-chess-party/`。
+- 线上 HTML、JS、CSS、Service Worker、两幅场景、两个头像及 board.glb 共九个文件与本地正式包 SHA-256 一致；见 `qa/starship/release-verification.json`。
+- 本机 LaunchAgent 保持运行，8797 已读取新版 build；`127.0.0.1:8797` 和 `localhost:8797` 的 HTML 与发布包一致。
+- 已有页面及新建线上标签页的浏览器 DOM/截图请求反复超时；没有取得新线上截图，也没有声称线上真实走棋复测通过。前述真实操作验收在本地开发版本完成，正式资源完整性单独核对通过。
+- 未清除任何站点数据、存档或缓存；已有旧页面需在新缓存准备完成后，关闭本游戏全部标签页再重新打开，以启用更新。
