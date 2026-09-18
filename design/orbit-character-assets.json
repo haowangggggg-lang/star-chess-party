@@ -1,0 +1,128 @@
+{
+  "version": 1,
+  "createdAt": "2026-09-18",
+  "concept": "星舰双人指挥室",
+  "generationMode": "built-in image_gen, one independent call per asset",
+  "reference": "design/approved-starship.png",
+  "originalDesignDimensions": [
+    1536,
+    1024
+  ],
+  "scope": "Character asset provenance; PNG sources are archived and WebP files are used at runtime.",
+  "assets": [
+    {
+      "outputPath": "public/art/orbit-bot.png",
+      "originalOutputPath": "generated:exec-de8894c1-a6d0-41c1-9bd1-4713b534e8a9.png",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "alphaBBox": [
+        49,
+        53,
+        1170,
+        1220
+      ],
+      "solidBBox": [
+        148,
+        145,
+        1113,
+        1097
+      ],
+      "fullyTransparentPixels": 904372,
+      "partiallyTransparentPixels": 667661,
+      "nearlyOpaquePixelsAlphaGE250": 650419,
+      "totalPixels": 1572516,
+      "centerAlpha": 253,
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "sha256": "a138c326e9b5852ec4be67046a22d09752afb01d923de6d6346fe079302a9608",
+      "file": "public/art/orbit-bot.png",
+      "slot": "Independent floating robot at desktop board right and phone upper-right; cropped face may be used for computer opponent avatar",
+      "referenceRegionApprox": [
+        861,
+        242,
+        134,
+        132
+      ],
+      "focalPoint": [
+        0.5,
+        0.5
+      ],
+      "processing": "Original PNG copied without pixel edits, original output retained.",
+      "prompt": "Use case: background-extraction.\nAsset type: ONE production game character cutout on a TRUE TRANSPARENT RGBA background, square 1024 x 1024 PNG.\nReference image role: the supplied design sheet is the exact character identity, material, lighting and pose reference. Extract/reconstruct ONLY the floating spherical robot at the RIGHT SIDE OF THE LARGE LEFT DESKTOP FRAME, approximately source pixels x=861..995, y=242..374. Do not use the small circular avatar portraits or invent another robot.\nSubject: a compact original spherical friendly robot. Warm cream porcelain spherical shell, large glossy black oval glass face screen inset with a delicate warm metallic rim; precisely two glowing cyan-mint curved closed smiling eyes shaped like ^ ^, NO mouth, NO nose. Blue-grey side housing. Round turquoise illuminated ear-disc on each side where visible. A very small blue-grey/cyan propulsion nub tucked under the sphere. Small understated upper antenna nub as in the original. Three-quarter view facing toward the viewer's LEFT, exactly like the desktop reference; visible cyan round ear-disc on image-right side. The visible silhouette is compact and nearly 1:1, smoothly rounded.\nMaterials and lighting: faithfully match the original 3D character: creamy ceramic, black reflective glass, mint emissive light, warm soft gold light on upper-left/top shell, subtle blue-violet ambient reflections on the right lower shell. Fine smooth highlights and soft ambient shading, no harsh outlines. Do not turn it into a flat vector icon or a humanlike robot.\nFraming: one complete isolated robot, centered, visible subject fills about 86–90% of square canvas; all silhouette and the tiny thruster retained with modest even transparent padding. Preserve real alpha antialiasing and transparent holes. Tiny localized glow around ear discs may have partial alpha but keep edges clean.\nStrict exclusions: no starry sky, room, chessboard, table, floor, cast shadow on a ground, stars, planets, text, numbers, logos, watermark, speech bubble, UI, badge, circular avatar backdrop, white/black matte, fake checkerboard, border, extra characters or objects. EVERYTHING OUTSIDE THE ROBOT MUST BE ACTUAL TRANSPARENCY. This is a reusable separate foreground asset, not a UI screenshot.",
+      "visualQA": {
+        "openedWith": "view_image",
+        "status": "passed",
+        "observations": "Cream ceramic sphere, glossy black face, mint curved smile-eyes, cyan circular ear discs, blue-grey housing and small propulsion nub; no scene, text or UI.",
+        "alphaNotes": "RGBA with transparent corners and near-opaque subject; generated semitransparent antialiasing and faint edge pixels retained. Use alpha>=128 solidBBox for visual placement."
+      }
+    },
+    {
+      "outputPath": "public/art/tuantuan-avatar.png",
+      "originalOutputPath": "generated:exec-9b69c997-459a-48f2-bd57-bee4a24ee27c.png",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "alphaBBox": [
+        0,
+        55,
+        1200,
+        1228
+      ],
+      "solidBBox": [
+        98,
+        104,
+        1156,
+        1161
+      ],
+      "fullyTransparentPixels": 686446,
+      "partiallyTransparentPixels": 884539,
+      "nearlyOpaquePixelsAlphaGE250": 871103,
+      "totalPixels": 1572516,
+      "centerAlpha": 253,
+      "cornerAlpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "sha256": "5ede32a75fcb78a8ae0e1c08fb49710215cd660f86d039755890267e340f98c8",
+      "file": "public/art/tuantuan-avatar.png",
+      "slot": "Tuantuan fictional girl avatar in turn rail; original fictional design character, not a real child likeness",
+      "referenceRegionApprox": [
+        1197,
+        739,
+        68,
+        66
+      ],
+      "focalPoint": [
+        0.5,
+        0.5
+      ],
+      "processing": "Original PNG copied without pixel edits, original output retained.",
+      "prompt": "Use case: background-extraction.\nAsset type: ONE circular fictional character avatar for a children's chess game, square PNG, true RGBA transparency outside the avatar circle, desired 1024 x 1024.\nReference image role: the supplied design sheet is the exact character/art reference. Reconstruct ONLY the GIRL PORTRAIT inside the round avatar at the bottom of the FAR-RIGHT PHONE VIEW, approximately source pixels x=1197..1265, y=739..805. Ignore all other elements. This is a fictional character from the supplied artwork, not a portrait of any real child.\nSubject and identity: cheerful stylized young girl facing front; short dark chocolate-brown bob haircut with soft side-swept bangs and rounded locks around cheeks, large warm brown eyes, friendly open happy smile, rosy cheeks, coral-pink simple shirt. Tightly framed head and upper shoulders / upper torso, not full body. Match the cute softly sculpted 3D illustrated avatar personality in the reference, refined smooth toy-like shading, soft warm face light and clean facial readability at 40–64 px.\nComposition: one perfect circular pale-lavender background disk, with the girl portrait contained cleanly inside its circular crop; generous face scale. Center this circle in the square image and let it occupy about 92% of the square width. Entire circle visible, never clipped by the square canvas. The area OUTSIDE THE CIRCLE must be truly transparent alpha=0, not white, black or fake checkerboard. The lavender disk itself is opaque, subtle smooth pastel shading permitted. Thin softly lighter edge may match the reference, but no thick badge frame, metallic ring or UI border.\nStrict exclusions: no text, numbers, labels, logo, watermark, robot, starfield, game scene, chessboard, stars, sparkles, speech bubble, buttons, interface, extra portraits or props. Do not create a screenshot or contact sheet. Output just the single finished circular avatar with real transparency outside the circle.",
+      "visualQA": {
+        "openedWith": "view_image",
+        "status": "passed",
+        "observations": "Short dark-brown bob, coral-pink shirt, happy front-facing close portrait, pale-lavender circular background; real alpha outside portrait circle.",
+        "alphaNotes": "RGBA with transparent corners and near-opaque subject; generated semitransparent antialiasing and faint edge pixels retained. Use alpha>=128 solidBBox for visual placement."
+      }
+    }
+  ]
+}

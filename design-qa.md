@@ -1,61 +1,46 @@
-# 星棋派对 · 石台与棋盘贴合修复
+# 星棋派对 · 第二种星舰方向
 
-final result: passed
+final result: visual QA passed; production verification pending
 
-验收日期：2026-09-17。本次通过仅指「棋盘/石台错位、切视角漂移、响应式变形及关联遮挡」的修复，不代表整套页面与原稿逐像素一致。上一报告把手填棋盘四角的自洽误认成与背景贴合，其“已消除两套透视”结论撤回，以本报告为准。
+验收日期：2026-09-18。团团重新选择的是原来按顺序展示的第二种「星舰双人指挥室」。该原稿同时含桌面和手机图。本次改画面，不改变国际象棋规则、电脑难度算法、残局、存档格式或已有合作流程；不部署到 ChatGPT Sites。
 
-## 问题与修复
+## 原稿与资产
 
-- P1：旧棋盘使用三套手填四角，独立于背景石台；桌面约向左偏20个源图像素，手机右后角越出台面。现在以 `design/stone-calibration.json` 的实际石台四角为唯一基准，在同一个8.8×8.8世界平面中居中嵌入8×8棋格。
-- P1：旧相机只保留一个中心线，并用 `.997` 截断高度；窄长手机棋盘下沿偏短。现在用完整四角单应变换，保留上下中心差异，重建裁剪深度和投影逆矩阵。
-- P1：切换俯视时旧代码独立改变棋盘四角，背景固定。现在两个视角共享同一底面，只改变棋子的观察仰角（48°/88°），并保持按石台宽比求出的相机距离。背景仍是已批准的插画资产；没有把整座岛重建成可旋转3D模型。
-- P2：tablet旧底图前沿测量混入厚边，圆角内缩造成前沿偏窄；独立原像素复核更新为 TL(151,444)、TR(874,444)、BR(994,931)、BL(46,931)，人工测量不确定度约±5源图像素。
-- P1：第一次修正截图中，企鹅挡住手机a8/b8棋头。最终将企鹅与兔子放到棋盘后方，画布未命中棋子时把背景按钮点击转交给原按钮；格子和棋子命中仍优先。没有裁剪棋子或移动玩法坐标。
+原稿：`design/approved-starship.png`，1536×1024；桌面区域 `[21,46,1075,700]`，手机区域 `[1123,47,396,876]`。独立环境、圆球机器人、小女孩虚构头像、标准图标在前端编辑前完成；资产尺寸、焦点、来源与哈希见 `design/starship-assets.json` 和 `design/orbit-character-assets.json`。环境不含棋格、棋子或界面，页面未嵌入完整设计稿。
 
-## 源与截图证据
+背景原图上的空白棋台四角继续作为真实 Three.js 棋面的投影基准；手机独立构图，平板适配同一竖屏环境。沿用六类 GLB 模型和命中方式。夜间材质采用奶油白/深紫棋子、紫灰棋格、暖舱灯与蓝色选中提示。修正棋子材质没有显式 envMap、导致独立反光强度被 scene 参数覆盖的问题。
 
-视觉真值：`design/approved-cloud-party.png`（1586×992）；桌面裁框 `[23,38,1112,639]`、手机裁框 `[1158,38,408,927]`。实际石台基准来自三张已存在背景原图，v2值见 `design/environment-v2.json`，tablet值独立按顶面直边延长线重测。未改原图、模型或字体。
+## 实际截图与修正
 
-所有最终页面截图来自真实Chrome设备尺寸工具；PNG为2×像素密度，比较图下采样到CSS像素。棋局使用既有合法存档（Nf3、…e6），原稿棋子布局为插画局面，未伪造规则以复制它。
+真实 Codex 浏览器截图，独立开发端口 8798，未覆盖常用预览 8797 或线上浏览器的棋局。
 
-| CSS视口 | 常规 / 俯视 PNG | 同尺寸并排 |
-| --- | --- | --- |
-| 1112×639 桌面 | `qa/stone-desktop-final.png` / `qa/stone-desktop-top-final.png` | `qa/stone-desktop-views.png` |
-| 408×927 手机 | `qa/stone-phone-final.png` / `qa/stone-phone-top-final.png` | `qa/stone-phone-views.png` |
-| 768×1024 平板 | `qa/stone-tablet-final.png` / `qa/stone-tablet-top-final.png` | `qa/stone-tablet-views.png` |
-| 375×667 短屏 | `qa/stone-short-final.png` / `qa/stone-short-top-final.png` | `qa/stone-short-views.png` |
-| 320×844 窄屏 | `qa/stone-narrow-final.png` / `qa/stone-narrow-top-final.png` | `qa/stone-narrow-views.png` |
+| CSS 视口 / 状态 | 本地截图 |
+| --- | --- |
+| 1075×700 桌面 | `qa/starship/desktop-final.png` |
+| 396×876 手机选中态 / 俯视 | `qa/starship/phone-final.png` / `qa/starship/phone-top.png` |
+| 768×1024 平板 | `qa/starship/tablet-final.png` |
+| 375×667 短屏 | `qa/starship/short-final.png` |
+| 320×844 窄屏 | `qa/starship/narrow-final.png` |
+| 伙伴建议 | `qa/starship/phone-hint-dialog.png` / `qa/starship/phone-suggestion-final.png` |
+| 窄屏设置、升变、胜利 | `qa/starship/narrow-settings.png` / `qa/starship/narrow-promotion.png` / `qa/starship/narrow-result.png` |
 
-- 原稿与实页：`qa/stone-desktop-reference.png`、`qa/stone-phone-reference.png`。
-- 棋面四边放大：`qa/stone-desktop-edge-detail.png`、`qa/stone-phone-edge-detail.png`。
-- 首轮发现与返修：`qa/stone-phone-v1.png` 可见a8/b8被挡；`qa/stone-phone-v2.png` 和最终截图已消除。
-- 独立只读复核上述五组双视角截图：本缺陷范围通过；四边同透视、左右边距合理、两个视角没有明显位置漂移、后排棋头完整。
+- 已修：手机视角/设置按钮重叠、对手名字折行、合作说明尾部截断。
+- 已修：状态信息恢复自动换行，长建议说明完整显示。
+- 独立复核发现建议条曾遮住 a–h 坐标；已移到桌面左侧、手机顶部，手机视角/设置并排置于棋桌下。最终桌面、手机、短屏建议截图复核无新增 P1/P2。
+- 已修：手机背景大于场景后，关闭弹窗的焦点恢复导致 hidden 容器向上滚动 74px。场景改为 overflow:clip，同流程回读 scrollTop=0。
+- 画面对照：桌面和手机保留深蓝舷窗、悬浮棋桌、奶油/紫色棋面、圆球机器人和蓝色控制区；棋面四角随环境缩放定位。手机和桌面界面分别排版，角色不占可操作格子。
+- 差异边界：沿用真实六类棋子模型，头部造型、远近体量及陶瓷光影与 AI 原稿仍有差异；原稿局面并非严格标准棋局。背景道具没有原稿杯子/书本上的装饰文字；品牌和合作符号使用标准矢量图标。未将此次方向切换宣称为逐像素复刻。
 
-## 五个视觉验收面
+## 功能与工程检查
 
-- 字体：沿用已发布字体与字号；坐标现在随同一投影落在石台留边上，未被裁切。
-- 布局：棋面完整位于石台顶面内，前沿未越到厚边或草地；普通、窄、短屏和两种观察视角都复核。
-- 颜色：棋子/棋格材质、背景调色未改变；当前材质与原稿的差别不在本次修复范围。
-- 图像：复用原有已批准方向的环境和角色文件；不生成替代插画、不嵌入设计稿；企鹅后置后不遮挡棋头。
-- 内容：所有用户文案、玩法入口和结算内容未改变。标题、城堡、模型细节等与原稿仍有差异，不将此次通过扩大成全稿复刻验收。
-
-## 操作与工程验证
-
-- Chrome手机视口物理点击企鹅脸部，打开原「一起想想」弹窗；关闭后点击f3马的头部（屏幕上覆盖f4位置），正确选中f3并显示合法落点。
-- 实际落子 Nf3-g5，电脑 Qd8xg5 正常回应；点击悔棋后恢复Nf3与黑后d8，刷新重新读到同一棋局。
-- 两种观察视角均可切换，底面稳定；缩放、手机/平板/桌面换图时按浏览器实际 `currentSrc` 与计算后的 `object-fit/object-position` 标定，图片load后重新计算。
-- `src/main.mjs`、`src/game.mjs`、`src/computer.mjs`、`src/storage.mjs`、`src/sound.mjs`、原始背景、GLB均与ef8432e一致。
-- 29项测试通过，包括原有18项规则/引擎测试、四角中线和窄屏回归、64格射线、深度次序，以及真实六类GLB在13视口×双视角×64格及跳跃包络的屏内检查。
-- 生产构建通过，42个运行文件约5.43MiB；Three.js单包大小提示仍存在。标定JSON纳入可下载源码包，保留独立构建能力。
-- 浏览器控制台可见MetaMask扩展contentscript告警，未见本游戏的新运行异常。实际iPhone/iPad设备GPU与触摸尚未测；设备尺寸截图不等同真机验收。
+- 实际点击 e2-e4，电脑回应 e7-e6；重载后同一局面恢复；悔棋退回整轮初始局面。
+- 伙伴选 g1-f3 后只显示建议，棋子仍在 g1；团团可拒绝建议。建议弹窗、设置入口和视角切换实际可用。
+- 实际开始「小兵的变身」，f7-f8 后选择升变为后，进入合法将死结算；窄屏结算按钮完整可见。
+- HTML 55 个 ID 无重复或缺失绑定；main 改动限于角色文案和头像路径；game/computer/storage/sound 未改，现有棋局格式和存储键未改。
+- 29 项测试通过，含新背景布局下模型可见性、棋盘四角、命中、视角及原有规则/引擎用例。
+- 正式构建通过：40 个离线运行文件，约 4.93 MiB。四张新原始 PNG 和八张无运行引用的旧 WebP 不进入运行目录，源码包保留原始美术。Three.js 单包大小提示仍存在。
+- 浏览器截至当前未见游戏 error 日志。视口验收不等同真实 iPhone/iPad GPU、帧率或触摸测试。
 
 ## 发布
 
-目标仍为用户自己的GitHub Pages：`https://haowangggggg-lang.github.io/star-chess-party/`。正式运行版本：`5abb75beccdfb8c0373bd1c4e7f8334c85017f12`，GitHub Actions [35200530360](https://github.com/haowangggggg-lang/star-chess-party/actions/runs/35200530360) 成功。
-
-- 线上HTML、JS、CSS、Service Worker、三张环境与棋盘模型共8个文件的SHA-256均与本地生产构建一致，记录 `qa/stone-release-verification.json`。
-- Chrome正式页初次仍由旧Service Worker控制；应用面板确认新worker已下载、等待激活。验收中通过该站点worker的 `skipWaiting` 按钮激活并重新加载，存档未清除。未修改应用自身的缓存升级策略、未勾选网络绕过。
-- 新worker激活后，正式页面已显示对齐后的梯形底面；俯视/立体切换保持边缘稳定。
-- 正式手机页面点击g1马头，合法落点正确；实际 Ng1-f3，电脑 Nb8-c6；悔棋恢复验收前棋局。
-- 正式截图：`qa/stone-public-desktop-5abb75b.png`、`qa/stone-public-phone-selected-5abb75b.png`。
-- 对于仍显示旧版本的已有页面，需关闭本游戏全部页面后重新打开，以允许已下载的新worker接管。
+发布目标仍为自己的 GitHub Pages，正式部署和实际网址验证完成后补录。

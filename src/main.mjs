@@ -13,7 +13,7 @@ let board,ready=false,busy=false,paused=false,selected=null,suggestion=null,part
 let saveSerial=0;
 const computer=new Computer({baseUrl:BASE,onStatus:status=>{
   if(!ready)return;
-  if(status==='loading')$('opponent-state').textContent='云朵棋手准备中…';
+  if(status==='loading')$('opponent-state').textContent='小轨道准备中…';
   if(status==='thinking')$('opponent-state').textContent=game.chess.turn()==='b'?'让我想一想…':'帮你想一招…';
 }});
 
@@ -30,9 +30,9 @@ function highlight(){board?.highlight({selected,legal:selected?game.legal(select
 function render(){
   if(!ready)return;
   const outcome=game.outcome(),white=game.chess.turn()==='w';
-  $('turn-title').textContent=paused?'歇一会儿':outcome?'这一局结束啦':partnerPicking?'伙伴来标个建议':busy?(white?'一起想一想…':'云朵在思考'):white?'轮到团团':'轮到云朵棋手';
-  $('turn-avatar').src=new URL(`art/${white?'penguin':'cloud-bot'}.webp`,BASE).href;
-  $('opponent-name').textContent=`云朵棋手 · ${DIFFICULTIES[skill]}`;
+  $('turn-title').textContent=paused?'歇一会儿':outcome?'这一局结束啦':partnerPicking?'伙伴来标个建议':busy?(white?'一起想一想…':'小轨道在思考'):white?'轮到团团':'轮到小轨道';
+  $('turn-avatar').src=new URL(`art/${white?'tuantuan-avatar':'orbit-bot'}.webp`,BASE).href;
+  $('opponent-name').textContent=`小轨道 · ${DIFFICULTIES[skill]}`;
   if(!busy)$('opponent-state').textContent=outcome?'好棋，下次再玩':paused?'等你回来':engineError?'点我，重新请棋手回来':white?'准备好啦，听你的':'该我啦';
   $('opponent').classList.toggle('thinking',busy&&!white);
   $('undo').disabled=!game.chess.history().length;
@@ -45,7 +45,7 @@ function render(){
   soundToggle.querySelector('img').src=new URL(`icons/speaker-${sound.enabled?'high':'slash'}.svg`,BASE).href;
   soundToggle.setAttribute('aria-pressed',String(sound.enabled));
   $('suggestion-bar').hidden=!suggestion;
-  if(suggestion)$('suggestion-text').textContent=`${suggestion.source==='partner'?'伙伴':'云朵'}建议：${NAMES[game.chess.get(suggestion.from)?.type]||'棋子'} ${suggestion.from} → ${suggestion.to}。最后听你的。`;
+  if(suggestion)$('suggestion-text').textContent=`${suggestion.source==='partner'?'伙伴':'小轨道'}建议：${NAMES[game.chess.get(suggestion.from)?.type]||'棋子'} ${suggestion.from} → ${suggestion.to}。最后听你的。`;
   document.querySelectorAll('[data-skill]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.skill)===skill)));
   document.querySelectorAll('[data-start]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.start===nextStart)));
   $('game-shell').dataset.turn=white?'white':'black';$('game-shell').dataset.busy=String(busy);$('game-shell').dataset.view=topView?'top':'perspective';
@@ -61,7 +61,7 @@ function start(id){
 function revealOutcome(){
   const o=game.outcome();if(!o)return false;
   render();const key=game.chess.fen();if(lastResult===key)return true;lastResult=key;
-  $('result-title').textContent=o.winner==='w'?'赢得漂亮！':o.winner==='b'?'云朵这次赢啦':'这局，握个手！';
+  $('result-title').textContent=o.winner==='w'?'赢得漂亮！':o.winner==='b'?'小轨道这次赢啦':'这局，握个手！';
   $('result-detail').textContent=o.winner==='w'?'你们一起找到了好棋。想再挑战哪一局？':o.winner==='b'?'想换个走法试试？可以回到棋盘悔棋，或再来一局。':o.detail;
   $('choose-next').textContent=game.startId==='classic'?'试个合作小挑战':'去下一个小挑战';
   show('result-dialog');sound.play(o.winner==='w'?'win':'move');say(o.detail);return true;
@@ -75,9 +75,9 @@ async function commit(from,to,promote='q'){
   if(rev!==revision)return true;
   busy=false;render();
   if(revealOutcome())return true;
-  if(game.chess.isCheck())say(game.chess.turn()==='w'?'你的王被将军了。找一招保护它。':'将军！看看云朵怎么应对。');
-  else if(move.color==='b')say(move.captured?'云朵吃了一枚棋子。一起看看下一步。':`云朵走了${NAMES[move.piece]}：${move.from} → ${move.to}。轮到你啦。`);
-  else say(move.captured?'这步吃到了棋子！轮到云朵回应。':'棋子落稳啦，看看云朵怎么走。');
+  if(game.chess.isCheck())say(game.chess.turn()==='w'?'你的王被将军了。找一招保护它。':'将军！看看小轨道怎么应对。');
+  else if(move.color==='b')say(move.captured?'小轨道吃了一枚棋子。一起看看下一步。':`小轨道走了${NAMES[move.piece]}：${move.from} → ${move.to}。轮到你啦。`);
+  else say(move.captured?'这步吃到了棋子！轮到小轨道回应。':'棋子落稳啦，看看小轨道怎么走。');
   if(game.chess.turn()==='b')void computerTurn();return true;
 }
 async function computerTurn(){
@@ -87,7 +87,7 @@ async function computerTurn(){
     const uci=await computer.suggest(fen,{skill,movetime:skill===8?600:300});
     if(rev!==revision||fen!==game.chess.fen()||paused||document.hidden)return;
     busy=false;
-    if(!uci||!await commit(uci.slice(0,2),uci.slice(2,4),uci[4]||'q'))throw new Error('这步没有落稳，点云朵棋手再试一次。');
+    if(!uci||!await commit(uci.slice(0,2),uci.slice(2,4),uci[4]||'q'))throw new Error('这步没有落稳，点小轨道再试一次。');
   }catch(error){if(rev!==revision)return;busy=false;if(error.name!=='AbortError'){engineError=true;say(error.message);}}finally{if(rev===revision){busy=false;render();}}
 }
 function pick(sq){
@@ -109,7 +109,7 @@ function undo(){
 }
 async function cloudHint(){
   if(!ready||paused||busy||game.chess.turn()!=='w'||game.outcome())return;close('hint-dialog');
-  partnerPicking=false;selected=null;const rev=revision,fen=game.chess.fen();busy=true;render();say('云朵在帮你找一个可以考虑的办法…');
+  partnerPicking=false;selected=null;const rev=revision,fen=game.chess.fen();busy=true;render();say('小轨道在帮你找一个可以考虑的办法…');
   try{const uci=await computer.suggest(fen,{skill:16,movetime:500});if(rev!==revision||fen!==game.chess.fen())return;if(uci){suggestion={from:uci.slice(0,2),to:uci.slice(2,4),promotion:uci[4],source:'cloud'};say('建议已经标在棋盘上。要不要走，听你的。');}}
   catch(error){if(rev===revision&&error.name!=='AbortError')say(error.message);}
   finally{if(rev===revision){busy=false;render();}}
@@ -177,7 +177,7 @@ async function boot(){
     nextStart=game.startId;
     board=new GameBoard($('board-stage'),{baseUrl:BASE,onSquare:pick,onError:error=>{paused=true;computer.cancel();$('render-error').hidden=false;say(error.message);}});
     await board.ready;board.sync(game.board());board.setView(topView);ready=true;enableControls(true);$('loading').hidden=true;render();
-    say(restored?'上次的棋局还在，接着玩吧。':'你们执白，云朵执黑。先选一枚棋子试试。');
+    say(restored?'上次的棋局还在，接着玩吧。':'你们执白，小轨道执黑。先选一枚棋子试试。');
     if(!revealOutcome())void computerTurn();
     if('serviceWorker'in navigator&&!import.meta.env.DEV){navigator.serviceWorker.register(new URL('sw.js',BASE),{scope:new URL('.',BASE).pathname}).catch(()=>{});}
   }catch(error){$('loading').hidden=true;$('render-error').hidden=false;say('画面没有准备好。请刷新试试，已有棋局会保留。');console.error(error);}

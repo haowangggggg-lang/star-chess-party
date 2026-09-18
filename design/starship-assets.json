@@ -1,0 +1,150 @@
+{
+  "selectedDesign": "design/approved-starship.png",
+  "selection": "User selected the second displayed direction, starship observatory, on 2026-09-18; original includes both desktop and phone views.",
+  "referenceSource": "Original generated option 2, retained as design/approved-starship.png",
+  "referenceSize": [
+    1536,
+    1024
+  ],
+  "views": {
+    "desktop": {
+      "crop": [
+        21,
+        46,
+        1075,
+        700
+      ],
+      "aspect": 1.535714
+    },
+    "phone": {
+      "crop": [
+        1123,
+        47,
+        396,
+        876
+      ],
+      "aspect": 0.452055
+    }
+  },
+  "assets": [
+    {
+      "file": "public/art/starship-stage-wide.webp",
+      "slot": "desktop environment only",
+      "referenceRegion": [
+        21,
+        46,
+        1075,
+        700
+      ],
+      "aspect": 1.535714,
+      "focalPoint": [
+        0.5,
+        0.5
+      ],
+      "includes": "star field, arched window, ringed planet, telescope, plant, hover table with empty smooth platform, mug, notebook, books, star lamp and small orrery",
+      "excludes": "UI, text labels, mascots, chess grid, pieces, coordinates",
+      "status": "inspected",
+      "sha256": "3caabd6caa5bd870620e2ec39117563e727e32ef23dfce768561cb6bf2fc0c73",
+      "actualSize": [
+        1553,
+        1013
+      ]
+    },
+    {
+      "file": "public/art/starship-stage-tall.webp",
+      "slot": "phone environment only",
+      "referenceRegion": [
+        1123,
+        47,
+        396,
+        876
+      ],
+      "aspect": 0.452055,
+      "focalPoint": [
+        0.5,
+        0.45
+      ],
+      "includes": "star field, arched window, ringed planet, plant, hover table with empty smooth platform",
+      "excludes": "UI, text labels, mascots, chess grid, pieces, coordinates",
+      "status": "inspected",
+      "sha256": "45d409f79858ffd2fcf90607efb86a826f60ef13d187a7b8bd57b5f467e73828",
+      "actualSize": [
+        844,
+        1864
+      ]
+    },
+    {
+      "file": "public/art/orbit-bot.webp",
+      "slot": "off-board robot and opponent avatar",
+      "referenceRegion": [
+        856,
+        241,
+        159,
+        151
+      ],
+      "aspect": 1,
+      "focalPoint": [
+        0.5,
+        0.5
+      ],
+      "status": "inspected",
+      "sha256": "814c6ecf5894c0b01563290044cf5ff9cf971b8e85e4378ce8f5320589448bfd",
+      "actualSize": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "file": "public/art/tuantuan-avatar.webp",
+      "slot": "turn and companion avatar",
+      "referenceRegion": [
+        1180,
+        737,
+        80,
+        78
+      ],
+      "aspect": 1,
+      "focalPoint": [
+        0.5,
+        0.5
+      ],
+      "status": "inspected",
+      "sha256": "b8bef59d5d7773e674061a160dc7c42d25b200f9c2e6dc947836afcd88f8b13b",
+      "actualSize": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "file": "public/icons/planet.svg",
+      "slot": "brand symbol",
+      "source": "installed Phosphor icon library",
+      "aspect": 1,
+      "focalPoint": [
+        0.5,
+        0.5
+      ],
+      "status": "inspected",
+      "sha256": "6debb1f42963ba6e1095d993253d2a558c2badb03cadc654e16f2e98dcaefb3d"
+    },
+    {
+      "file": "public/icons/users.svg",
+      "slot": "cooperation indicator",
+      "source": "installed Phosphor icon library",
+      "aspect": 1,
+      "focalPoint": [
+        0.5,
+        0.5
+      ],
+      "status": "inspected",
+      "sha256": "b3385e4c6aa03f7e16d1b03887c2cdff9900f5a7edbd5ea5176055938ccfb908"
+    },
+    {
+      "file": "public/models/*.glb",
+      "slot": "interactive board and six chess piece types",
+      "source": "existing reusable 3D models with theme material changes",
+      "status": "existing"
+    }
+  ],
+  "preparationGate": "All independent environment/character assets exist and were opened. Standard icon files copied from installed Phosphor; existing six GLB chess types reused. Mobile environment is cropped vertically in layout to align the board region. No design comp is rendered in the app."
+}

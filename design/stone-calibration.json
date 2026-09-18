@@ -23,6 +23,20 @@
       "corners": [[151,444],[874,444],[994,931],[46,931]],
       "source": "2026-09-17 independent source-pixel edge inspection; straight side extensions intersect top face rear y444/front y931, excluding rounded corners and the bevel; visual uncertainty about 5px",
       "sha256": "c0431949325fb60e291e9a271b85ed9d1ff706d3556a0ab4162a510ae2c98b53"
+    },
+    "starship-stage-wide.webp": {
+      "width": 1553,
+      "height": 1013,
+      "corners": [[423,222],[1104,222],[1230,812],[287,812]],
+      "source": "2026-09-18 source-pixel inspection of the shipped starship background; straight cream-platform sides extended to rear y222/front y812, excluding rounded corners and the front bevel; visual uncertainty about 5px",
+      "sha256": "3caabd6caa5bd870620e2ec39117563e727e32ef23dfce768561cb6bf2fc0c73"
+    },
+    "starship-stage-tall.webp": {
+      "width": 844,
+      "height": 1864,
+      "corners": [[114,478],[730,478],[834,1170],[9,1170]],
+      "source": "2026-09-18 source-pixel inspection of the shipped starship background; straight cream-platform sides extended to rear y478/front y1170, excluding rounded corners and the front bevel; visual uncertainty about 5px",
+      "sha256": "45d409f79858ffd2fcf90607efb86a826f60ef13d187a7b8bd57b5f467e73828"
     }
   }
 }

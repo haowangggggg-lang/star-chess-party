@@ -32,7 +32,7 @@ execFileSync('tar', [
   '--no-xattrs',
   ...(process.platform === 'darwin' ? ['--no-mac-metadata'] : []),
   '--exclude=.DS_Store', '--exclude=._*', '-C', root,
-  'src', 'scripts', 'tests', 'public', 'licenses', '.github', 'design/stone-calibration.json',
+  'src', 'scripts', 'tests', 'public', 'licenses', '.github', 'design/stone-calibration.json', 'design/starship-assets.json', 'design/orbit-character-assets.json',
   'package.json', 'package-lock.json', 'vite.config.mjs', 'index.html', 'README.md', 'LICENSE',
 ], { stdio: 'inherit', env: { ...process.env, COPYFILE_DISABLE: '1' } });
 
@@ -43,7 +43,10 @@ const sourceOnlyArt = [
   'penguin.png', 'rabbit.png', 'team-sign.png', 'victory-crown.png',
   'background-manifest.json', 'character-manifest.json', 'props-manifest.json',
   'cloud-stage-wide-v2.png', 'cloud-stage-tall-v2.png', 'castle-island.png',
-  'cloud-stage-wide.webp',
+  'cloud-stage-wide.webp', 'cloud-stage-wide-v2.webp', 'cloud-stage-tall-v2.webp',
+  'cloud-stage-tall.webp', 'castle-island.webp', 'cloud-bot.webp',
+  'penguin.webp', 'rabbit.webp', 'team-sign.webp',
+  'starship-stage-wide.png', 'starship-stage-tall.png', 'orbit-bot.png', 'tuantuan-avatar.png',
 ];
 await Promise.all(sourceOnlyArt.map(name => rm(join(output, 'art', name), { force: true })));
 

@@ -3,44 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#78b6f4" />
-    <meta name="description" content="星棋派对：和团团一起商量，和云朵棋手下一盘国际象棋。" />
+    <meta name="theme-color" content="#111a3b" />
+    <meta name="description" content="星棋派对：和团团一起商量，在星舰里下一盘国际象棋。" />
     <title>星棋派对</title>
-    <link rel="icon" href="/icons/star.svg" type="image/svg+xml" />
+    <link rel="icon" href="/icons/planet.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="/src/style.css" />
   </head>
   <body>
     <main id="game-shell" class="game-shell">
       <picture class="scene-background" aria-hidden="true">
-        <source media="(min-width: 701px) and (max-aspect-ratio: 6/5)" srcset="/art/cloud-stage-tall.webp" />
-        <source media="(max-aspect-ratio: 6/5)" srcset="/art/cloud-stage-tall-v2.webp" />
-        <img src="/art/cloud-stage-wide-v2.webp" alt="" fetchpriority="high" decoding="async" />
+        <source media="(max-aspect-ratio: 6/5)" srcset="/art/starship-stage-tall.webp" />
+        <img src="/art/starship-stage-wide.webp" alt="" fetchpriority="high" decoding="async" />
       </picture>
-      <div class="castle-island" aria-hidden="true"><img src="/art/castle-island.webp" alt="" decoding="async" /></div>
-
       <header class="hud">
-        <div class="brand">
-          <h1>星棋派对<img class="brand-star" src="/icons/star.svg" alt="" /></h1>
-          <p>一起商量，团团落子<img class="brand-heart" src="/icons/heart.svg" alt="" /></p>
-        </div>
-        <button id="settings-open" class="icon-button settings-open" type="button" aria-label="打开小岛设置" aria-haspopup="dialog">
-          <img src="/icons/gear-six.svg" alt="" />
-        </button>
+        <div class="brand"><h1><img src="/icons/planet.svg" alt="" />星棋派对</h1></div>
+        <div class="team-heading"><img src="/icons/users.svg" alt="" /><div><strong>共同挑战</strong><p>和小伙伴一起思考<span class="desktop-note">，迎接星空中的下一步</span></p></div></div>
+        <button id="settings-open" class="icon-button settings-open" type="button" aria-label="打开星舰设置" aria-haspopup="dialog"><img src="/icons/gear-six.svg" alt="" /></button>
       </header>
-
-      <button id="opponent" class="opponent" type="button" aria-label="云朵棋手，打开难度设置" aria-haspopup="dialog">
-        <img class="opponent-avatar" src="/art/cloud-bot.webp" alt="" decoding="async" />
-        <span class="opponent-copy">
-          <span id="opponent-name">云朵棋手 · 轻松</span>
-          <span id="opponent-state">准备好啦</span>
-        </span>
+      <button id="opponent" class="opponent" type="button" aria-label="小轨道，打开难度设置" aria-haspopup="dialog">
+        <span class="opponent-avatar"><img src="/art/orbit-bot.webp" alt="" /></span>
+        <span class="opponent-copy"><span id="opponent-name">小轨道 · 轻松</span><span id="opponent-state">准备好啦</span></span>
+        <img class="opponent-chevron" src="/icons/caret-down.svg" alt="" />
       </button>
-
-      <button id="partner-tap" class="friend-penguin" data-scene-control type="button" aria-label="和团团一起想想" aria-haspopup="dialog">
-        <img src="/art/penguin.webp" alt="薄荷绿小企鹅" decoding="async" />
+      <button id="partner-tap" class="orbit-friend" data-scene-control type="button" aria-label="找小轨道一起想想" aria-haspopup="dialog">
+        <img src="/art/orbit-bot.webp" alt="圆球机器人小轨道" decoding="async" />
       </button>
-      <img class="friend-rabbit" src="/art/rabbit.webp" alt="给我们加油的粉色小兔子" decoding="async" />
-      <img class="team-sign" src="/art/team-sign.webp" alt="好棋，一起想出来" decoding="async" />
 
       <div id="board-stage" class="board-stage" aria-label="国际象棋棋盘">
         <canvas id="chess-canvas" aria-hidden="true"></canvas>
@@ -49,8 +36,8 @@
       </div>
 
       <div id="loading" class="scene-notice" role="status" aria-live="polite">
-        <img src="/art/cloud-bot.webp" alt="" />
-        <span id="loading-text">云朵小岛准备中…</span>
+        <img src="/art/orbit-bot.webp" alt="" />
+        <span id="loading-text">星舰准备中…</span>
       </div>
       <div id="render-error" class="scene-notice render-error" role="alert" hidden>
         <p>棋盘还没显示出来，<br />我们再试一次。</p>
@@ -58,7 +45,7 @@
       </div>
 
       <div id="suggestion-bar" class="suggestion-bar" role="status" aria-live="polite" hidden>
-        <img src="/art/penguin.webp" alt="" />
+        <img src="/art/tuantuan-avatar.webp" alt="" />
         <p id="suggestion-text">团团有个想法，我们一起看看。</p>
         <div class="suggestion-actions">
           <button id="accept-suggestion" class="primary-button" type="button">就走这一步</button>
@@ -68,39 +55,27 @@
 
       <footer class="play-controls">
         <div class="turn-pill">
-          <span class="turn-avatar-crop"><img id="turn-avatar" src="/art/penguin.webp" alt="" /></span>
-          <p id="turn-title">轮到团团</p>
+          <span class="turn-avatar-crop"><img id="turn-avatar" src="/art/tuantuan-avatar.webp" alt="" /></span>
+          <div><p id="turn-title">轮到团团</p><p class="turn-note">和我一起想出好棋吧！</p></div>
         </div>
         <p id="message" role="status" aria-live="polite" aria-atomic="true">选一枚棋子，一起想想下一步。</p>
         <div class="toolbar" role="group" aria-label="棋局工具">
-          <button id="undo" class="round-tool" type="button" aria-label="悔棋，回到我们上一步">
-            <img src="/icons/arrow-counter-clockwise.svg" alt="" />
-            <span>悔棋</span>
-          </button>
-          <button id="hint" class="round-tool" type="button" aria-haspopup="dialog">
-            <img src="/icons/lightbulb.svg" alt="" />
-            <span>给个建议</span>
-          </button>
-          <button id="view" class="round-tool" type="button" aria-label="切换棋盘视角">
-            <img src="/icons/camera.svg" alt="" />
-            <span>视角</span>
-          </button>
+          <button id="hint" class="round-tool" type="button" aria-haspopup="dialog"><img src="/icons/lightbulb.svg" alt="" /><span>一起想想</span></button>
+          <button id="undo" class="round-tool" type="button" aria-label="悔棋，回到我们上一步"><img src="/icons/arrow-counter-clockwise.svg" alt="" /><span>悔棋</span></button>
+          <button id="view" class="round-tool view-tool" type="button" aria-label="切换棋盘视角"><img src="/icons/camera.svg" alt="" /><span>视角</span></button>
         </div>
-        <div class="game-meta">
-          <small id="save-state">棋局自动保存</small>
-          <small id="game-label">标准开局 · 我们执白</small>
-        </div>
+        <div class="game-meta"><small id="save-state">棋局自动保存</small><small id="game-label">标准开局 · 我们执白</small></div>
       </footer>
     </main>
 
     <dialog id="settings-dialog" class="sheet" aria-labelledby="settings-title">
       <div class="dialog-card settings-card">
         <button class="dialog-close icon-button" data-close="settings-dialog" type="button" aria-label="关闭设置"><img src="/icons/x.svg" alt="" /></button>
-        <h2 id="settings-title">小岛设置</h2>
+        <h2 id="settings-title">星舰设置</h2>
         <p class="dialog-intro">选一个今天想玩的挑战。</p>
         <section class="setting-section" aria-labelledby="skill-title">
-          <h3 id="skill-title">云朵棋手</h3>
-          <div class="skill-options" role="group" aria-label="云朵棋手难度">
+          <h3 id="skill-title">小轨道</h3>
+          <div class="skill-options" role="group" aria-label="小轨道难度">
             <button data-skill="0" type="button" aria-pressed="true">轻松</button>
             <button data-skill="4" type="button" aria-pressed="false">认真</button>
             <button data-skill="8" type="button" aria-pressed="false">挑战</button>
@@ -131,8 +106,8 @@
         <h2 id="hint-title">一起想想</h2>
         <p class="dialog-intro">伙伴会标出建议，怎么走还是我们决定。</p>
         <div class="hint-options">
-          <button id="ask-partner" class="hint-choice" type="button"><img src="/art/penguin.webp" alt="" /><strong>请伙伴建议</strong><span>先标出来，团团决定</span></button>
-          <button id="ask-cloud" class="hint-choice" type="button"><img src="/art/cloud-bot.webp" alt="" /><strong>请云朵帮忙</strong><span>看看棋手的建议</span></button>
+          <button id="ask-partner" class="hint-choice" type="button"><img src="/art/tuantuan-avatar.webp" alt="" /><strong>请伙伴建议</strong><span>先标出来，团团决定</span></button>
+          <button id="ask-cloud" class="hint-choice" type="button"><img src="/art/orbit-bot.webp" alt="" /><strong>请小轨道帮忙</strong><span>看看棋手的建议</span></button>
         </div>
         <button class="quiet-button" data-close="hint-dialog" type="button">我们先自己想想</button>
       </div>
@@ -154,8 +129,7 @@
     <dialog id="result-dialog" class="sheet result-sheet" aria-labelledby="result-title">
       <div class="dialog-card result-card">
         <img class="victory-crown" src="/art/victory-crown.webp" alt="" />
-        <img class="result-friend result-penguin" src="/art/penguin.webp" alt="" />
-        <img class="result-friend result-rabbit" src="/art/rabbit.webp" alt="" />
+        <img class="result-friend" src="/art/orbit-bot.webp" alt="" />
         <h2 id="result-title">赢得漂亮！</h2>
         <p id="result-detail">好棋，是我们一起想出来的。</p>
         <div class="dialog-actions">
@@ -180,8 +154,8 @@
 
     <dialog id="pause-dialog" class="sheet" aria-labelledby="pause-title">
       <div class="dialog-card compact-card pause-card">
-        <img class="pause-friend" src="/art/cloud-bot.webp" alt="" />
-        <h2 id="pause-title">小岛等你回来</h2>
+        <img class="pause-friend" src="/art/orbit-bot.webp" alt="" />
+        <h2 id="pause-title">星舰等你回来</h2>
         <p class="dialog-intro">歇歇眼睛，下一步不着急。</p>
         <button id="resume" class="primary-button" type="button"><img src="/icons/play.svg" alt="" />继续下棋</button>
       </div>

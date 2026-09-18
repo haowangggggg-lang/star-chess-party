@@ -144,7 +144,7 @@ test('view switching changes a raised piece while its ground contact stays fixed
   assert.ok(Math.hypot(headA.x - headB.x, headA.y - headB.y) > 2);
 });
 
-test('shipped GLB pieces and their full hops remain on screen across phone, tablet and capped wide stages', async () => {
+test('shipped GLBs remain visible and selectable at the corners across cloud and starship layouts', async () => {
   const calibration = JSON.parse(await readFile(new URL('../design/stone-calibration.json', import.meta.url), 'utf8'));
   const models = [];
   for (const name of ['pawn', 'rook', 'knight', 'bishop', 'queen', 'king']) {
@@ -157,7 +157,7 @@ test('shipped GLB pieces and their full hops remain on screen across phone, tabl
     for (const rotation of name === 'knight' ? [0, Math.PI] : [0]) {
       scene.rotation.y = rotation;
       scene.updateMatrixWorld(true);
-      models.push({ name, box: new Box3().setFromObject(scene, true) });
+      models.push({ name, box: new Box3().setFromObject(scene, true), template: scene.clone(true) });
     }
   }
   const viewports = [
@@ -165,28 +165,63 @@ test('shipped GLB pieces and their full hops remain on screen across phone, tabl
     [768, 1024], [820, 1180], [1024, 768], [1440, 900], [1920, 1080],
     [1920, 600], [844, 390], [667, 375],
   ];
-  for (const [viewportWidth, viewportHeight] of viewports) {
-    // These are the current picture/CSS layout cases; browser QA separately
-    // verifies that actual stage rectangles still agree with these inputs.
-    const portrait = viewportWidth / viewportHeight <= 1.2;
-    const width = Math.min(viewportWidth, 1.9 * viewportHeight);
-    const height = Math.max(viewportHeight, portrait ? 600 : viewportHeight <= 600 ? 360 : 560);
-    const asset = portrait
-      ? viewportWidth >= 701 ? 'cloud-stage-tall.webp' : 'cloud-stage-tall-v2.webp'
-      : 'cloud-stage-wide-v2.webp';
-    const stoneCorners = fitStoneSurface(calibration.surfaces[asset], { width, height, fit: portrait ? 'fill' : 'cover' });
-    for (const topView of [false, true]) {
-      const camera = new PerspectiveCamera();
-      configureBoardCamera(camera, { width, height, stoneCorners, topView });
-      for (const { name, box } of models) for (let file = 0; file < 8; file++) for (let rank = 0; rank < 8; rank++) {
-        for (const hop of [0, name === 'knight' ? 0.6 : 0.16]) {
-          for (const x of [box.min.x, box.max.x]) for (const y of [box.min.y, box.max.y]) for (const z of [box.min.z, box.max.z]) {
-            const point = new Vector3(x + file - 3.5, y + hop, z + rank - 3.5);
-            const p = pixel(point, camera, { width, height });
-            const margin = Math.min(p.x, width - p.x, p.y, height - p.y);
-            assert.ok(margin >= 1,
-              `${name} at ${file},${rank}, hop ${hop}, top ${topView} clips ${viewportWidth}x${viewportHeight}: margin ${margin}`);
+  const cornerPieces = [[0, 0], [7, 0], [7, 7], [0, 7]].map(([file, rank]) => {
+    const model = models.find(({ name }) => name === 'rook').template.clone(true);
+    model.position.set(file - 3.5, 0, rank - 3.5);
+    model.userData.square = `${file},${rank}`;
+    model.updateMatrixWorld(true);
+    return model;
+  });
+  for (const theme of ['cloud', 'starship']) {
+    // Retain all thirteen historical viewport cases for both environments.
+    // One extra short phone exercises the starship's 560px minimum-height rule.
+    const sizes = theme === 'starship' ? [...viewports, [390, 560]] : viewports;
+    for (const [viewportWidth, viewportHeight] of sizes) {
+      // These are the current picture/CSS layout cases; browser QA separately
+      // verifies that actual stage rectangles still agree with these inputs.
+      const portrait = viewportWidth / viewportHeight <= 1.2;
+      const width = Math.min(viewportWidth, 1.9 * viewportHeight);
+      const phone = portrait && viewportWidth <= 700;
+      const minHeight = portrait ? theme === 'starship' && phone && viewportHeight <= 700 ? 560 : 600 : 360;
+      const height = Math.max(viewportHeight, minHeight);
+      const asset = theme === 'starship'
+        ? portrait ? 'starship-stage-tall.webp' : 'starship-stage-wide.webp'
+        : portrait
+        ? viewportWidth >= 701 ? 'cloud-stage-tall.webp' : 'cloud-stage-tall-v2.webp'
+        : 'cloud-stage-wide-v2.webp';
+      // The phone image is 113% of the full stage height and translated up by
+      // 4% of its own height. Tablet portrait uses the same image at 100%.
+      const imageHeight = theme === 'starship' && phone ? 1.13 * height : height;
+      const imageTop = theme === 'starship' && phone ? -.0452 * height : 0;
+      const stoneCorners = fitStoneSurface(calibration.surfaces[asset], {
+        width, height: imageHeight, fit: theme === 'starship' || portrait ? 'fill' : 'cover',
+      }).map(({ x, y }) => ({ x, y: y + imageTop }));
+      for (const topView of [false, true]) {
+        const camera = new PerspectiveCamera();
+        const result = configureBoardCamera(camera, { width, height, stoneCorners, topView });
+        assert.ok(result.maxCornerErrorPx < 1e-7, `${theme}: support plane drifted from artwork`);
+        for (const { name, box } of models) for (let file = 0; file < 8; file++) for (let rank = 0; rank < 8; rank++) {
+          for (const hop of [0, name === 'knight' ? 0.6 : 0.16]) {
+            for (const x of [box.min.x, box.max.x]) for (const y of [box.min.y, box.max.y]) for (const z of [box.min.z, box.max.z]) {
+              const point = new Vector3(x + file - 3.5, y + hop, z + rank - 3.5);
+              const p = pixel(point, camera, { width, height });
+              const margin = Math.min(p.x, width - p.x, p.y, height - p.y);
+              assert.ok(margin >= 1,
+                `${theme}: ${name} at ${file},${rank}, hop ${hop}, top ${topView} clips ${viewportWidth}x${viewportHeight}: margin ${margin}`);
+            }
           }
+        }
+        // Exercise actual shipped meshes through Three's calibrated inverse,
+        // rather than only projecting a synthetic plane back onto itself.
+        for (const model of cornerPieces) {
+          const centre = new Box3().setFromObject(model, true).getCenter(new Vector3());
+          const point = pixel(centre, camera, { width, height });
+          const ray = new Raycaster();
+          ray.setFromCamera(new Vector2(2 * point.x / width - 1, 1 - 2 * point.y / height), camera);
+          let hit = ray.intersectObjects(cornerPieces, true)[0]?.object;
+          while (hit && !hit.userData.square) hit = hit.parent;
+          assert.equal(hit?.userData.square, model.userData.square,
+            `${theme}: corner ${model.userData.square}, top ${topView} is not selectable at ${viewportWidth}x${viewportHeight}`);
         }
       }
     }

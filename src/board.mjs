@@ -14,7 +14,7 @@ function ringGlowTexture(){
   for(let y=0;y<size;y++)for(let x=0;x<size;x++){
     const distance=Math.hypot((x+.5)/size-.5,(y+.5)/size-.5)*2;
     const alpha=Math.exp(-(((distance-.65)/.15)**2))*100;
-    const i=(y*size+x)*4;data[i]=29;data[i+1]=236;data[i+2]=181;data[i+3]=Math.round(alpha);
+    const i=(y*size+x)*4;data[i]=45;data[i+1]=137;data[i+2]=255;data[i+3]=Math.round(alpha);
   }
   const texture=new T.DataTexture(data,size,size,T.RGBAFormat);texture.colorSpace=T.SRGBColorSpace;texture.magFilter=T.LinearFilter;texture.minFilter=T.LinearFilter;texture.needsUpdate=true;return texture;
 }
@@ -24,24 +24,24 @@ export class GameBoard {
     this.stage=stage;this.canvas=stage.querySelector('canvas');this.grid=stage.querySelector('#hit-grid');this.coordinates=stage.querySelector('#coordinates');
     this.onSquare=onSquare;this.onError=onError;this.baseUrl=baseUrl;this.pieces=new Map();this.templates=new Map();this.buttons=new Map();this.tweens=[];this.frame=0;this.topView=false;this.reducedMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;this.disposed=false;
     this.renderer=new T.WebGLRenderer({canvas:this.canvas,antialias:true,alpha:true,powerPreference:'low-power'});
-    this.renderer.setPixelRatio(Math.min(devicePixelRatio,2));this.renderer.setClearColor(0,0);this.renderer.shadowMap.enabled=true;this.renderer.shadowMap.type=T.PCFShadowMap;this.renderer.toneMapping=T.ACESFilmicToneMapping;this.renderer.toneMappingExposure=.92;
+    this.renderer.setPixelRatio(Math.min(devicePixelRatio,2));this.renderer.setClearColor(0,0);this.renderer.shadowMap.enabled=true;this.renderer.shadowMap.type=T.PCFShadowMap;this.renderer.toneMapping=T.ACESFilmicToneMapping;this.renderer.toneMappingExposure=1.02;
     this.scene=new T.Scene();this.camera=new T.PerspectiveCamera(34,1,.1,100);
     // A broad studio reflection makes the rounded porcelain read softly. It
     // is generated once; the board still renders only when something changes.
     const room=new RoomEnvironment(),pmrem=new T.PMREMGenerator(this.renderer);
     this.environmentTarget=pmrem.fromScene(room,.07,0.1,100);
-    this.scene.environment=this.environmentTarget.texture;this.scene.environmentIntensity=.10;
+    this.scene.environment=this.environmentTarget.texture;this.scene.environmentIntensity=.26;
     room.dispose();pmrem.dispose();
-    this.scene.add(new T.HemisphereLight('#fff7e8','#b4c8e5',.32));
-    // Back-left sunlight places short shadows in front of the pieces, where
-    // the playing camera can see them. Front-left fill lights ivory faces
-    // from the same side, preserving warm shaded right sides and undercuts.
-    const sun=new T.DirectionalLight('#fff4e0',2.45);sun.position.set(-5,12,-6);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-6,right:6,top:6,bottom:-6,near:1,far:32});sun.shadow.normalBias=.006;sun.shadow.bias=-.00005;sun.shadow.radius=14;sun.shadow.intensity=.70;this.scene.add(sun);
-    const fill=new T.DirectionalLight('#fff3e0',1.05);fill.position.set(-7,8,6);this.scene.add(fill);
+    this.scene.add(new T.HemisphereLight('#ffe8cf','#5c4964',.20));
+    // Warm cabin light defines the porcelain, with short visible shadows.
+    // A restrained blue window rim separates the dark pieces from the board.
+    const sun=new T.DirectionalLight('#ffdfba',2.3);sun.position.set(-5,12,-6);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-6,right:6,top:6,bottom:-6,near:1,far:32});sun.shadow.normalBias=.006;sun.shadow.bias=-.00005;sun.shadow.radius=14;sun.shadow.intensity=.70;this.scene.add(sun);
+    const fill=new T.DirectionalLight('#fff1dc',1.4);fill.position.set(-7,6,7);this.scene.add(fill);
+    const rim=new T.DirectionalLight('#8faeff',.45);rim.position.set(6,5,-8);this.scene.add(rim);
     this.markerLayer=new T.Group();this.scene.add(this.markerLayer);
     this.geometries={tile:new T.PlaneGeometry(.97,.97),dot:new T.CircleGeometry(.155,32),ring:new T.RingGeometry(.345,.382,64),halo:new T.PlaneGeometry(1.14,1.14),capture:new T.RingGeometry(.38,.425,40)};
     this.haloTexture=ringGlowTexture();
-    this.materials={selected:new T.MeshBasicMaterial({color:'#32deb6',transparent:true,opacity:.18,depthWrite:false}),dot:new T.MeshBasicMaterial({color:'#38cfae',transparent:true,opacity:.9,depthWrite:false}),ring:new T.MeshBasicMaterial({color:'#22e5b2',transparent:true,opacity:.90,depthWrite:false,toneMapped:false}),halo:new T.MeshBasicMaterial({map:this.haloTexture,transparent:true,depthWrite:false,toneMapped:false}),last:new T.MeshBasicMaterial({color:'#ffe698',transparent:true,opacity:.34,depthWrite:false}),suggested:new T.MeshBasicMaterial({color:'#fa849b',transparent:true,opacity:.82,depthWrite:false}),check:new T.MeshBasicMaterial({color:'#f27579',transparent:true,opacity:.48,depthWrite:false})};
+    this.materials={selected:new T.MeshBasicMaterial({color:'#2884ff',transparent:true,opacity:.18,depthWrite:false,toneMapped:false}),dot:new T.MeshBasicMaterial({color:'#3e85ff',transparent:true,opacity:.94,depthWrite:false,toneMapped:false}),ring:new T.MeshBasicMaterial({color:'#63beff',transparent:true,opacity:.98,depthWrite:false,toneMapped:false}),halo:new T.MeshBasicMaterial({map:this.haloTexture,transparent:true,depthWrite:false,toneMapped:false}),last:new T.MeshBasicMaterial({color:'#ffe698',transparent:true,opacity:.34,depthWrite:false}),suggested:new T.MeshBasicMaterial({color:'#89caff',transparent:true,opacity:.90,depthWrite:false,toneMapped:false}),check:new T.MeshBasicMaterial({color:'#f27579',transparent:true,opacity:.48,depthWrite:false})};
     for(let z=0;z<8;z++)for(let x=0;x<8;x++){
       const sq=square(x,z),button=document.createElement('button');button.type='button';button.dataset.square=sq;button.className='board-cell';button.setAttribute('role','gridcell');button.setAttribute('aria-label',sq);button.tabIndex=sq==='e2'?0:-1;
       button.addEventListener('click',event=>{
@@ -77,16 +77,21 @@ export class GameBoard {
     const loader=new GLTFLoader();const models=await Promise.all(['board',...Object.values(TYPES)].map(async name=>({name,scene:(await loader.loadAsync(new URL(`models/${name}.glb`,this.baseUrl).href)).scene})));
     for(const {name,scene}of models){
       if(name==='board'){scene.traverse(o=>{if(!o.isMesh)return;o.receiveShadow=true;
-        // Keep the cream men distinct from the lighter stone squares. Richer
-        // blue also survives the bright sky lighting without turning grey.
-        if(o.material.name==='blue-square')o.material.color.set('#7594d4');
-        if(o.material.name==='ivory-square')o.material.color.set('#fff0da');
-        o.material.roughness=.34;
-        if('clearcoat'in o.material){o.material.clearcoat=.26;o.material.clearcoatRoughness=.30;}
+        // The cabin's board uses muted violet and warm ivory, with restrained
+        // reflections so its live squares sit inside the painted cream rim.
+        if(o.material.name==='blue-square')o.material.color.set('#6c6487');
+        if(o.material.name==='ivory-square')o.material.color.set('#ebd0ad');
+        if(o.material.name==='cream-stone-frame')o.material.color.set('#e6c8a8');
+        o.material.roughness=.46;
+        if('clearcoat'in o.material){o.material.clearcoat=.12;o.material.clearcoatRoughness=.30;}
       });this.scene.add(scene);continue;}
       for(const color of ['w','b']){
-        const template=scene.clone(true);template.traverse(o=>{if(!o.isMesh)return;o.material=o.material.clone();o.material.color.set(color==='b'?(o.material.name==='detail'?'#122840':'#244366'):(o.material.name==='detail'?'#8e7350':'#ffe8c7'));o.material.roughness=.31;if('clearcoat'in o.material){o.material.clearcoat=.28;o.material.clearcoatRoughness=.27;}o.castShadow=true;o.receiveShadow=true;});
-        if(color==='w')template.traverse(o=>{if(!o.isMesh)return;o.material.envMapIntensity=2.3;o.material.roughness=.27;o.material.emissive.set('#ffe4b5');o.material.emissiveIntensity=.09;});
+        const template=scene.clone(true);template.traverse(o=>{if(!o.isMesh)return;o.material=o.material.clone();o.material.color.set(color==='b'?(o.material.name==='detail'?'#171427':'#36283f'):(o.material.name==='detail'?'#8e7350':'#ffe5be'));o.material.roughness=.32;
+          // Three r186 uses scene.environmentIntensity when envMap is null.
+          // Bind the same PMREM explicitly so these ceramic-specific values
+          // control real soft reflections without washing out the whole board.
+          o.material.envMap=this.environmentTarget.texture;o.material.envMapIntensity=color==='b'?.80:.34;o.material.emissiveIntensity=0;
+          if('clearcoat'in o.material){o.material.clearcoat=color==='b'?.40:.32;o.material.clearcoatRoughness=.30;}o.castShadow=true;o.receiveShadow=true;});
         template.scale.setScalar(.92);this.templates.set(`${color}${name}`,template);
       }
     }
