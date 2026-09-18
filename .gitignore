@@ -5,3 +5,4 @@ qa/
 node_modules/
 .vite/
 build/
+logs/

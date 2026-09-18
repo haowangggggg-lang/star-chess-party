@@ -28,6 +28,16 @@ npm run preview
 
 `build/` 是发布目录；旧版可从 Git 历史取回。`npm run build` 会生成资源版本和 `sw.js`，同时把许可证与对应源码放入 `build/legal/`。可以把整个 `build/` 放到其他获授权的静态服务器；不要用 `file://` 打开。WASM 应以 `application/wasm` 返回。
 
+macOS 本机常驻预览使用同一个入口 `http://127.0.0.1:8797/`：
+
+```sh
+npm run build
+python3 scripts/preview-service.py install
+python3 scripts/preview-service.py status
+```
+
+它通过用户 LaunchAgent 独立运行 `vite preview`，读取 `build/`，登录时启动、进程退出后自动恢复；仅监听本机。改源码后需重新构建。需要用同端口开发或关闭常驻预览时，先运行 `python3 scripts/preview-service.py stop`。日志位于 `logs/`。
+
 ## 存档与离线缓存
 
 棋局自动保存在当前浏览器的 IndexedDB，并以 localStorage 备份；保存完整走棋历史，恢复时重新验证每一步及最终局面，因此三次重复判断不会因刷新丢失。设置里的“带走棋局 / 打开棋局”用于导出和导入 JSON。存档不跨设备自动同步；浏览器清理、隐私模式或存储配额都可能使本机存档失效，重要棋局请导出。
